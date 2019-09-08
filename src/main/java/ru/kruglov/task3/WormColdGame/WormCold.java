@@ -43,7 +43,6 @@ public class WormCold {
         int previousPlayerGuess = 0;
         int guessedNumeric = numericRandomizer();
         System.out.println("Welcome to the Cold Warm Game! \nPlease type any numeric from 0 to 100\n");
-        //System.out.println("Guessed numeric = " + guessedNumeric);
         while (!(numericComparator(guessedNumeric, currentPlayerGuess))) {
             System.out.println("Your answer:");
             String playerInputPhrase = getDataFromSystemIn();
