@@ -1,4 +1,4 @@
-package ru.kruglov.task1.Time;
+package ru.kruglov.task2.Time;
 
 public class TimeConverter {
     private int seconds;
