@@ -1,7 +1,7 @@
 package ru.kruglov.task2.Time;
 
 public class TimeConverter {
-    
+
     private int seconds;
 
     TimeConverter(int inputSeconds) {
