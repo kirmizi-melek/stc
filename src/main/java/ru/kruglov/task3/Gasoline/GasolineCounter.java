@@ -1,4 +1,8 @@
-package ru.kruglov.task1.Gasoline;
+package ru.kruglov.task3.Gasoline;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class GasolineCounter {
     private static int GASOLINE_PRICE = 4300; // price in cents
@@ -18,12 +22,14 @@ public class GasolineCounter {
         return gasolineCost;
     }
 
-    public static void main(String Args[]) {
+    public static void main(String Args[]) throws IOException {
+        System.out.println("Type needed volume of gasoline:");
+        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+        String inputValue = buff.readLine();
         try {
-            String inputValue = Args[0];
             int volume = Integer.parseInt(inputValue);
             GasolineCounter gc = new GasolineCounter(volume);
-            System.out.println(gc.getGasolineCost());
+            System.out.println("Total cost of gasoline = " + gc.getGasolineCost());
         } catch (ArrayIndexOutOfBoundsException aiobe) {
             aiobe.printStackTrace();
             System.exit(1);

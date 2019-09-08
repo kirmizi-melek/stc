@@ -1,9 +1,5 @@
 package ru.kruglov.task2.ClearSalary;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class ClearSalaryCounter {
     private static int NDFL = 13;
     private int dirtSalary;
@@ -22,14 +18,12 @@ public class ClearSalaryCounter {
         return clearSalary;
     }
 
-    public static void main(String Args[]) throws IOException {
-        System.out.println("Type your total salary:");
-        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
-        String inputValue = buff.readLine();
+    public static void main(String Args[]) {
         try {
+            String inputValue = Args[0];
             int salary = Integer.parseInt(inputValue);
             ClearSalaryCounter csc = new ClearSalaryCounter(salary);
-            System.out.println("Your clear salary = " + csc.getClearSalary());
+            System.out.println(csc.getClearSalary());
         } catch (ArrayIndexOutOfBoundsException aiobe) {
             aiobe.printStackTrace();
             System.exit(1);

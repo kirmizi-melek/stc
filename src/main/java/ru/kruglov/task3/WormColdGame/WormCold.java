@@ -1,4 +1,4 @@
-package ru.kruglov.task2.WormColdGame;
+package ru.kruglov.task3.WormColdGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;
