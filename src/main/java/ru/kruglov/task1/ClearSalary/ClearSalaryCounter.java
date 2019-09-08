@@ -1,4 +1,4 @@
-package ru.kruglov.task2.ClearSalary;
+package ru.kruglov.task1.ClearSalary;
 
 public class ClearSalaryCounter {
     private static int NDFL = 13;

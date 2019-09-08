@@ -1,4 +1,4 @@
-package ru.kruglov.task2.Gasoline;
+package ru.kruglov.task1.Gasoline;
 
 public class GasolineCounter {
     private static int GASOLINE_PRICE = 4300; // price in cents
