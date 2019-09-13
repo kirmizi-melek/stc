@@ -1,5 +1,7 @@
 package ru.kruglov.task4.MultiplyTable;
 
+import ru.kruglov.localLibs.InputDataHandle;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,7 +38,8 @@ public class MultiplyTable {
             System.out.println("<<Multiplication table>>");
             System.out.println("Print any integer digit:");
             MultiplyTable multiplyTable = new MultiplyTable();
-            String userInput = multiplyTable.getDataFromSystemIn();
+            String userInput = InputDataHandle.getDataFromSystemIn();
+            //String userInput = multiplyTable.getDataFromSystemIn();
             if (userInput.equals("exit")) {
                 System.out.println("Application is being closing");
                 appStatus = false;

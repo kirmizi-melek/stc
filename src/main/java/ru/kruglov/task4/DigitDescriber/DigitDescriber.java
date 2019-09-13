@@ -1,26 +1,18 @@
 package ru.kruglov.task4.DigitDescriber;
 
-
-import java.io.BufferedReader;
+import  ru.kruglov.localLibs.InputDataHandle;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class DigitDescriber {
     private int inputDigit;
 
-    public void inputDigitSetter(String inputString) {
+    private void inputDigitSetter(String inputString) {
         try {
             inputDigit = Integer.parseInt(inputString);
             digitDescriber();
         } catch (NumberFormatException nfe) {
-            System.out.println("Wrong value. Please enter again");
+            System.out.println("Wrong value. Please enter again\n");
         }
-    }
-
-    private String getDataFromSystemIn() throws IOException {
-        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
-        String inputValue = buff.readLine();
-        return inputValue;
     }
 
     private void digitDescriber() {
@@ -52,7 +44,8 @@ public class DigitDescriber {
         while (appStatus) {
             DigitDescriber digitDescriber = new DigitDescriber();
             System.out.println("Print any integer digit:");
-            String userInput= digitDescriber.getDataFromSystemIn();
+            //String userInput= digitDescriber.getDataFromSystemIn();
+            String userInput = InputDataHandle.getDataFromSystemIn();
             if (userInput.equals("exit")) {
                 System.out.println("Application is being closing");
                 appStatus = false;
