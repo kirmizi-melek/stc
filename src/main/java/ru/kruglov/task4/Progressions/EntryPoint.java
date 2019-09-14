@@ -17,16 +17,20 @@ public class EntryPoint {
             System.out.println(UIresponse.HELP.getText());
 
         } else if (inputPhrase.equals("geometric") || inputPhrase.equals("1")) {
-            System.out.println(UIresponse.GEOMETRIC_CHOOSE.getText());
+            System.out.print(UIresponse.GEOMETRIC_CHOOSE.getText());
+            System.out.println(UIresponse.INPUT_DELIMITER.getText());
             String inputString = InputDataHandle.getDataFromSystemIn();
             int inputValue = getIntFromSystemIn(inputString);
             getElementsFromArray(GeometricProgression.getProgression(inputValue));
 
         } else if (inputPhrase.equals("arithmetic") || inputPhrase.equals("2")) {
-            System.out.println(UIresponse.ARITHMETIC_CHOOSE.getText());
+            System.out.print(UIresponse.ARITHMETIC_CHOOSE.getText());
+            System.out.println(UIresponse.INPUT_DELIMITER.getText());
             String inputString = InputDataHandle.getDataFromSystemIn();
             int inputValue = getIntFromSystemIn(inputString);
             getElementsFromArray(ArithmeticProgression.getProgression(inputValue));
+        } else {
+
         }
 
     }
@@ -49,6 +53,9 @@ public class EntryPoint {
             } catch (IOException ioe) {
                 instance = null;
                 ioe.printStackTrace();
+            } catch (NumberFormatException nfe) {
+                System.out.println(UIresponse.WRONG_INPUT_DATA.getText());
+                continue;
             }
         }
     }
