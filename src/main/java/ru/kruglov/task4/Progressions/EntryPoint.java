@@ -8,25 +8,22 @@ public class EntryPoint {
     boolean appStatus = true;
 
     private void userInputHandler() throws IOException {
-        System.out.println("Select progression. Type \"help\" for more info.");
+        System.out.println(UIresponse.WELCOME.getText());
         String inputPhrase = InputDataHandle.getDataFromSystemIn();
         if (inputPhrase.equals("exit")) {
-            System.out.println("Application is being closing");
+            System.out.println(UIresponse.GOODBYE.getText());
             appStatus = false;
         } else if (inputPhrase.equals("help")) {
-            System.out.println("If you want to choose geomitric progression, type \"geometric\" or \"1\" \n" +
-                    "in terminal window, if arithmetic - type \"arithmetic\" or \"2\"" +
-                    " If you want to quit - type \"exit\"." +
-                    "Thanks for using our application  + \n");
+            System.out.println(UIresponse.HELP.getText());
 
         } else if (inputPhrase.equals("geometric") || inputPhrase.equals("1")) {
-            System.out.println("Geometric is chosen");
+            System.out.println(UIresponse.GEOMETRIC_CHOOSE.getText());
             String inputString = InputDataHandle.getDataFromSystemIn();
             int inputValue = getIntFromSystemIn(inputString);
             getElementsFromArray(GeometricProgression.getProgression(inputValue));
 
         } else if (inputPhrase.equals("arithmetic") || inputPhrase.equals("2")) {
-            System.out.println("Arithmetic is chosen");
+            System.out.println(UIresponse.ARITHMETIC_CHOOSE.getText());
             String inputString = InputDataHandle.getDataFromSystemIn();
             int inputValue = getIntFromSystemIn(inputString);
             getElementsFromArray(ArithmeticProgression.getProgression(inputValue));
@@ -36,16 +33,13 @@ public class EntryPoint {
 
     private void getElementsFromArray (Integer[] arrayOfIntegers) {
         for(Integer element: arrayOfIntegers){
-            System.out.println(element);
+            System.out.print(element + "; ");
         }
+        System.out.println("\n");
     }
 
     private int getIntFromSystemIn(String string) throws IOException {
         return Integer.parseInt(string);
-    }
-
-    private void getGeometricProgression() {
-
     }
 
     private void instanceCreator(EntryPoint instance) {
