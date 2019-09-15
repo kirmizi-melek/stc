@@ -11,6 +11,4 @@ public class InputDataHandle {
         String inputValue = buff.readLine();
         return inputValue;
     }
-
-
 }
