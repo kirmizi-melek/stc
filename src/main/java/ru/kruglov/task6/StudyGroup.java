@@ -21,10 +21,4 @@ public class StudyGroup extends Department {
         this.groupNumber = newGrpoupNumber;
         this.countOfStudents = newCountOfStudents;
     }
-
-    void getData() {
-        System.out.println(
-
-        );
-    }
 }
