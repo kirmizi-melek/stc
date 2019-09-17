@@ -17,7 +17,7 @@ public class GasolineCounter {
         }
     }
 
-    public float getGasolineCost() {
+    private float getGasolineCost() {
         float gasolineCost = gasolineVolume * GASOLINE_PRICE / 100;
         return gasolineCost;
     }
@@ -30,11 +30,8 @@ public class GasolineCounter {
             int volume = Integer.parseInt(inputValue);
             GasolineCounter gc = new GasolineCounter(volume);
             System.out.println("Total cost of gasoline = " + gc.getGasolineCost());
-        } catch (ArrayIndexOutOfBoundsException aiobe) {
-            aiobe.printStackTrace();
-            System.exit(1);
-        } catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
             System.exit(1);
         }
 

@@ -6,8 +6,7 @@ import java.io.InputStreamReader;
 
 public class InputDataHandle {
 
-    public static String getDataFromSystemIn() throws IOException {
-        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+    public static String getDataFromSystemIn(BufferedReader buff) throws IOException {
         String inputValue = buff.readLine();
         return inputValue;
     }
