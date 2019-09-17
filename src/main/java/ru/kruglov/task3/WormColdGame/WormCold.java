@@ -8,14 +8,11 @@ public class WormCold {
 
     private String getDataFromSystemIn() throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
-        String inputValue = buff.readLine();
-        return inputValue;
+        return buff.readLine();
     }
 
     private boolean numericComparator(int guessedNumeric, int playerGuess) {
-        if ( playerGuess == guessedNumeric ) {
-            return true;
-        } else return false;
+        return playerGuess == guessedNumeric;
     }
 
     private String callbackOnPlayerAnswer(int guessedNumeric, int currentPlayerGuess, int previousPlayerGuess) {
@@ -34,8 +31,7 @@ public class WormCold {
 
     private int numericRandomizer() {
         float floatRandom = Math.round(Math.random()*100);
-        int intRandom = (int) floatRandom;
-        return intRandom;
+        return (int) floatRandom;
     }
 
     private void startGame() throws IOException{
@@ -48,7 +44,7 @@ public class WormCold {
             String playerInputPhrase = getDataFromSystemIn();
             if (playerInputPhrase.equals("exit")) {
                 System.out.println("Bye-bye");
-                System.exit(0);
+                //System.exit(0);
             } else if (playerInputPhrase.equals("help")) {
                 System.out.println("\nApplication commands\n" +
                         "help - get help about the game\n" +
@@ -64,13 +60,12 @@ public class WormCold {
         }
     }
 
-    public static void main(String Args[]) {
+    public static void main(String[] args) {
         WormCold wcGame = new WormCold();
         try {
             wcGame.startGame();
         } catch (IOException ioe) {
             ioe.printStackTrace();
-            System.exit(1);
         }
     }
 }

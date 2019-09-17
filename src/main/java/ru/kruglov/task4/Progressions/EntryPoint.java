@@ -2,37 +2,47 @@ package ru.kruglov.task4.Progressions;
 
 import ru.kruglov.localLibs.InputDataHandle;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class EntryPoint {
-    boolean appStatus = true;
+    private boolean appStatus = true;
 
     private void userInputHandler() throws IOException {
+
+        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(UIresponse.WELCOME.getText());
-        String inputPhrase = InputDataHandle.getDataFromSystemIn();
-        if (inputPhrase.equals("exit")) {
-            System.out.println(UIresponse.GOODBYE.getText());
-            appStatus = false;
-        } else if (inputPhrase.equals("help")) {
-            System.out.println(UIresponse.HELP.getText());
+        String inputPhrase = InputDataHandle.getDataFromSystemIn(buff);
+        switch (inputPhrase) {
+            case "exit":
+                System.out.println(UIresponse.GOODBYE.getText());
+                appStatus = false;
+                break;
+            case "help":
+                System.out.println(UIresponse.HELP.getText());
 
-        } else if (inputPhrase.equals("geometric") || inputPhrase.equals("1")) {
-            System.out.print(UIresponse.GEOMETRIC_CHOOSE.getText());
-            System.out.println(UIresponse.INPUT_DELIMITER.getText());
-            String inputString = InputDataHandle.getDataFromSystemIn();
-            int inputValue = getIntFromSystemIn(inputString);
-            getElementsFromArray(GeometricProgression.getProgression(inputValue));
+                break;
+            case "geometric":
+            case "1": {
+                System.out.print(UIresponse.GEOMETRIC_CHOOSE.getText());
+                System.out.println(UIresponse.INPUT_DELIMITER.getText());
+                String inputString = InputDataHandle.getDataFromSystemIn(buff);
+                int inputValue = getIntFromSystemIn(inputString);
+                getElementsFromArray(GeometricProgression.getProgression(inputValue));
 
-        } else if (inputPhrase.equals("arithmetic") || inputPhrase.equals("2")) {
-            System.out.print(UIresponse.ARITHMETIC_CHOOSE.getText());
-            System.out.println(UIresponse.INPUT_DELIMITER.getText());
-            String inputString = InputDataHandle.getDataFromSystemIn();
-            int inputValue = getIntFromSystemIn(inputString);
-            getElementsFromArray(ArithmeticProgression.getProgression(inputValue));
-        } else {
-
+                break;
+            }
+            case "arithmetic":
+            case "2": {
+                System.out.print(UIresponse.ARITHMETIC_CHOOSE.getText());
+                System.out.println(UIresponse.INPUT_DELIMITER.getText());
+                String inputString = InputDataHandle.getDataFromSystemIn(buff);
+                int inputValue = getIntFromSystemIn(inputString);
+                getElementsFromArray(ArithmeticProgression.getProgression(inputValue));
+                break;
+            }
         }
-
     }
 
     private void getElementsFromArray (Integer[] arrayOfIntegers) {
@@ -49,13 +59,13 @@ public class EntryPoint {
     private void instanceCreator(EntryPoint instance) {
         while (this.appStatus) {
             try {
+                assert instance != null;
                 instance.userInputHandler();
             } catch (IOException ioe) {
                 instance = null;
                 ioe.printStackTrace();
             } catch (NumberFormatException nfe) {
                 System.out.println(UIresponse.WRONG_INPUT_DATA.getText());
-                continue;
             }
         }
     }

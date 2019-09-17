@@ -10,12 +10,11 @@ public class MinimalValue {
             this.secondValue = value2;
         } catch (Exception exception) {
             exception.printStackTrace();
-            System.exit(0);
         }
     }
 
     private int[] comparator() {
-        int minimalValue[] = new int[2];
+        int[] minimalValue = new int[2];
         if (firstValue > secondValue) {
             minimalValue[0] = secondValue;  // 0'th element means the minimal value
             minimalValue[1] = 1;            // 1'st element means the state

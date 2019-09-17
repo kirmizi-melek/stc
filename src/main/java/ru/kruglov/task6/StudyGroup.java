@@ -12,6 +12,11 @@ public class StudyGroup extends Department {
         return countOfStudents;
     }
 
+    @Override
+    public void printName() {
+        System.out.println("Я группа в Университете " + name);
+    }
+
     StudyGroup(String newName,
                String newAddress,
                String newSpeciality,

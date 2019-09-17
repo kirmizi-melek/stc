@@ -1,7 +1,10 @@
 package ru.kruglov.task4.DigitDescriber;
 
 import  ru.kruglov.localLibs.InputDataHandle;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class DigitDescriber {
     private int inputDigit;
@@ -41,11 +44,11 @@ public class DigitDescriber {
 
     public static void main(String[] args) throws IOException {
         boolean appStatus = true;
+        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
         while (appStatus) {
             DigitDescriber digitDescriber = new DigitDescriber();
             System.out.println("Print any integer digit:");
-            //String userInput= digitDescriber.getDataFromSystemIn();
-            String userInput = InputDataHandle.getDataFromSystemIn();
+            String userInput = InputDataHandle.getDataFromSystemIn(buff);
             if (userInput.equals("exit")) {
                 System.out.println("Application is being closing");
                 appStatus = false;

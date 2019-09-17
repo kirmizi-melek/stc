@@ -1,7 +1,7 @@
 package ru.kruglov.task2.Gasoline;
 
 public class GasolineCounter {
-    private static int GASOLINE_PRICE = 4300; // price in cents
+    private static final int GASOLINE_PRICE = 4300; // price in cents
     private int gasolineVolume;
 
     GasolineCounter(int volume) {
@@ -9,27 +9,21 @@ public class GasolineCounter {
             this.gasolineVolume = volume;
         } else {
             System.out.println("Value of gasoline volume is less or equal 0");
-            System.exit(1);
         }
     }
 
-    public float getGasolineCost() {
-        float gasolineCost = gasolineVolume * GASOLINE_PRICE / 100;
-        return gasolineCost;
+    private float getGasolineCost() {
+        return (float) (gasolineVolume * GASOLINE_PRICE / 100);
     }
 
-    public static void main(String Args[]) {
+    public static void main(String[] args) {
         try {
-            String inputValue = Args[0];
+            String inputValue = args[0];
             int volume = Integer.parseInt(inputValue);
             GasolineCounter gc = new GasolineCounter(volume);
             System.out.println(gc.getGasolineCost());
-        } catch (ArrayIndexOutOfBoundsException aiobe) {
-            aiobe.printStackTrace();
-            System.exit(1);
-        } catch (NumberFormatException nfe) {
-            nfe.printStackTrace();
-            System.exit(1);
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            e.printStackTrace();
         }
 
     }

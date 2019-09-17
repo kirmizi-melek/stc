@@ -19,12 +19,6 @@ public class MultiplyTable {
         }
     }
 
-    private String getDataFromSystemIn() throws IOException {
-        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
-        String inputValue = buff.readLine();
-        return inputValue;
-    }
-
     private void multiplier() {
         for (int i = 0; i <= 10; i++) {
             System.out.println(inputDigit + " x " + i + " = " + inputDigit * i);
@@ -34,11 +28,12 @@ public class MultiplyTable {
 
     public static void main(String[] args) throws IOException {
         boolean appStatus = true;
+        BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
         while (appStatus) {
             System.out.println("<<Multiplication table>>");
             System.out.println("Print any integer digit:");
             MultiplyTable multiplyTable = new MultiplyTable();
-            String userInput = InputDataHandle.getDataFromSystemIn();
+            String userInput = InputDataHandle.getDataFromSystemIn(buff);
             //String userInput = multiplyTable.getDataFromSystemIn();
             if (userInput.equals("exit")) {
                 System.out.println("Application is being closing");

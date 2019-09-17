@@ -1,8 +1,8 @@
 package ru.kruglov.task6;
 
 public class University {
-    private String name;
-    private String address;
+    protected String name;
+    protected String address;
 
     public String getName() {
         return name;
@@ -10,6 +10,10 @@ public class University {
 
     public String getAddress() {
         return address;
+    }
+
+    public void printName() {
+        System.out.println("Я университет " + name);
     }
 
     University(String newName, String newAddress) {

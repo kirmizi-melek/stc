@@ -12,11 +12,10 @@ public class TimeConverter {
             this.seconds = inputSeconds;
         } else {
             System.out.println("Value of seconds is less than 0");
-            System.exit(1);
         }
     }
 
-    public String getTimeInHours() {
+    private String getTimeInHours() {
         String outputTime;
         int hours = seconds / 3600;
         int minutes = (seconds / 60) % 60;
@@ -24,7 +23,7 @@ public class TimeConverter {
         return outputTime;
     }
 
-    public static void main(String Args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         System.out.println("Type time in seconds:");
         BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
         String inputValue = buff.readLine();
@@ -32,12 +31,8 @@ public class TimeConverter {
             int time = Integer.parseInt(inputValue);
             TimeConverter tc = new TimeConverter(time);
             System.out.println(tc.getTimeInHours());
-        } catch (ArrayIndexOutOfBoundsException aiofbe){
-            aiofbe.printStackTrace();
-            System.exit(1);
-        } catch (NumberFormatException nfc) {
-            nfc.printStackTrace();
-            System.exit(1);
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e){
+            e.printStackTrace();
         }
     }
 }
