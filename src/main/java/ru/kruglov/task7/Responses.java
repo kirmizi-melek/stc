@@ -3,7 +3,13 @@ package ru.kruglov.task7;
 public enum Responses {
     WELCOME ("Welcome to vending machine user interface. \n" +
             "Type \"help\" for getting more info."),
-    HELP("Help \n"),
+    HELP("Available commands: \n" +
+            "\"help\" - get help about app \n" +
+            "\"menu\" - get list of drinks \n" +
+            "\"deposit\" - insert money \n" +
+            "\"drink\" - buy a drink \n" +
+            "\"change\" - get deposit back \n" +
+            "\"exit\" - leave the app"),
     PRICELIST("Pricelist"),
     CURRENCY("rub."),
     GOODBYE("Application is being closing.\n"),
