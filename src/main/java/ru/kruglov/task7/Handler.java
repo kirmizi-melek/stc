@@ -36,7 +36,10 @@ class Handler {
                     buyDrink();
                     break;
                 case ("change"):
-                    System.out.println("Take your change: " + deposit.getChange());
+                    System.out.println(Responses.TAKE_CHANGE.getText() + deposit.getChange());
+                    break;
+                default:
+                    System.out.println(Responses.WRONG_INPUT.getText());
                     break;
             }
         }
@@ -60,15 +63,19 @@ class Handler {
         try {
             int drinkID = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
             int cost = Drinks.getPriceForSelectedDrink(drinks, drinkID);
-            if (deposit.comparator(cost)) {
-                deposit.decreaseDeposite(cost);
-                System.out.println(Drinks.getDrink() +
-                                   Drinks.getNameForSelectedDrink(drinks, drinkID));
-                System.out.println("Your deposit balance: " + deposit.getDeposite());
-            } else {
+            String drinkName = Drinks.getNameForSelectedDrink(drinks, drinkID);
+            if (drinkName != null) {
+                if (deposit.comparator(cost)) {
+                    deposit.decreaseDeposite(cost);
+                    System.out.println(Drinks.getDrink() +
+                                       Drinks.getNameForSelectedDrink(drinks, drinkID));
+                    System.out.println("Your deposit balance: " + deposit.getDeposite());
+                } else {
                 System.out.println(Responses.NOT_ENOUPH_MONEY.getText());
+                }
+            } else {
+                System.out.println(Responses.WRONG_DRINK_ID.getText());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

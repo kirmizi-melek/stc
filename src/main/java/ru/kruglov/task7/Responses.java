@@ -11,6 +11,9 @@ public enum Responses {
     SELECT_DRINK("Type number of drink"),
     NOT_ENOUPH_MONEY("You don't have enough money on deposit. Please add more."),
     TAKE_DRINK("Please, take your drink: "),
+    TAKE_CHANGE("Take your change: "),
+    WRONG_INPUT("Wrong input parameter"),
+    WRONG_DRINK_ID("Wrong id of drink"),
     PUT_MONEY("Please, put money in coin acceptor");
 
     private String text;
