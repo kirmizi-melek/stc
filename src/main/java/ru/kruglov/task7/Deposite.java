@@ -15,7 +15,13 @@ public class Deposite {
         return this.depositeSum >= drinkPrice;
     }
 
-    public int getChange(int priceOfDrink) {
-        return this.depositeSum - priceOfDrink;
+    public int getChange() {
+        int change = this.depositeSum;
+        depositeSum = 0;
+        return change;
+    }
+
+    public void decreaseDeposite(int priceOfDrink) {
+        this.depositeSum -= priceOfDrink;
     }
 }

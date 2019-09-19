@@ -7,7 +7,11 @@ public enum Responses {
     PRICELIST("Pricelist"),
     CURRENCY("rub."),
     GOODBYE("Application is being closing.\n"),
-    PUT_MONEY("Please put money in coin acceptor");
+    CURRENT_DEPOSITE("Your deposit: "),
+    SELECT_DRINK("Type number of drink"),
+    NOT_ENOUPH_MONEY("You don't have enough money on deposit. Please add more."),
+    TAKE_DRINK("Please, take your drink: "),
+    PUT_MONEY("Please, put money in coin acceptor");
 
     private String text;
 

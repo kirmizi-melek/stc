@@ -19,7 +19,10 @@ public enum Drinks {
     public static void getMenu(Drinks[] allDrinks) {
         System.out.println(Responses.PRICELIST.getText());
         for (Drinks drink : allDrinks) {
-            System.out.println(drink.name + " : " + drink.price + " " + Responses.CURRENCY.getText());
+            System.out.println(drink.id + ") " +
+                               drink.name + " : " +
+                               drink.price + " " +
+                               Responses.CURRENCY.getText());
         }
     }
 
@@ -32,5 +35,20 @@ public enum Drinks {
             }
         }
         return priceOfDrink;
+    }
+
+    public static String getNameForSelectedDrink(Drinks[] allDrinks, int id) {
+        String drinkName = null;
+        for (Drinks drink : allDrinks) {
+            if (id == drink.id) {
+                drinkName = drink.name;
+                break;
+            }
+        }
+        return drinkName;
+    }
+
+    public static String getDrink() {
+        return Responses.TAKE_DRINK.getText();
     }
 }
