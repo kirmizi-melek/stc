@@ -12,7 +12,6 @@ class Handler {
     private Deposite deposit = new Deposite();
 
     void start() throws IOException {
-
         System.out.println(Responses.WELCOME.getText());
         while (appStatus) {
             String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
@@ -38,6 +37,9 @@ class Handler {
                 case ("change"):
                     System.out.println(Responses.TAKE_CHANGE.getText() + deposit.getChange());
                     break;
+                case ("check"):
+                    System.out.println(Responses.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
+                    break;
                 default:
                     System.out.println(Responses.WRONG_INPUT.getText());
                     break;
@@ -53,7 +55,7 @@ class Handler {
         try {
             int coins = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
             depo.setDeposite(coins);
-            System.out.println(Responses.CURRENT_DEPOSITE.getText() + depo.getDeposite());
+            System.out.println(Responses.CURRENT_DEPOSIT.getText() + depo.getDeposit());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -82,7 +84,7 @@ class Handler {
         deposit.decreaseDeposite(cost);
         System.out.println(Drinks.getDrink() +
                 Drinks.getNameForSelectedDrink(drinks, id));
-        System.out.println("Your deposit balance: " + deposit.getDeposite());
+        System.out.println("Your deposit balance: " + deposit.getDeposit());
     }
 
 

@@ -9,11 +9,12 @@ public enum Responses {
             "\"deposit\" - insert money \n" +
             "\"drink\" - buy a drink \n" +
             "\"change\" - get deposit back \n" +
+            "\"check\" - get deposit balance \n" +
             "\"exit\" - leave the app"),
     PRICELIST("Pricelist"),
     CURRENCY("rub."),
     GOODBYE("Application is being closing.\n"),
-    CURRENT_DEPOSITE("Your deposit: "),
+    CURRENT_DEPOSIT("Your deposit: "),
     SELECT_DRINK("Type number of drink"),
     NOT_ENOUPH_MONEY("You don't have enough money on deposit. Please add more."),
     TAKE_DRINK("Please, take your drink: "),

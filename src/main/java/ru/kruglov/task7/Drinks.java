@@ -38,14 +38,12 @@ public enum Drinks {
     }
 
     public static String getNameForSelectedDrink(Drinks[] allDrinks, int id) {
-        String drinkName = null;
         for (Drinks drink : allDrinks) {
             if (id == drink.id) {
-                drinkName = drink.name;
-                break;
+                return drink.name;
             }
         }
-        return drinkName;
+        return null;
     }
 
     public static String getDrink() {
