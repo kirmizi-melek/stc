@@ -26,3 +26,5 @@ hs_err_pid*
 # IDEA files
 /.idea/*
 /.idea/uiDesigner.xml
+/innopolis.iml
+/pom.xml
