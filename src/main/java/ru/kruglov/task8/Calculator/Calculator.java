@@ -19,33 +19,50 @@ class Calculator {
         while (appStatus) {
             System.out.println(Responses.HELLO.getText());
             String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
-            switch (inputPhrase) {
+            String arithmeticAction = arithmeticActionSelector(inputPhrase);
+            System.out.println(Responses.arithmeticActionResponses(inputPhrase));
+            if (arithmeticAction != null) {
+                System.out.println(Responses.INPUT_FIRST_VALUE.getText());
+                double firstValue = Double.valueOf(InputDataHandle.getDataFromSystemIn(this.buff));
+                System.out.println(Responses.INPUT_SECOND_VALUE.getText());
+                double secondValue = Double.valueOf(InputDataHandle.getDataFromSystemIn(this.buff));
+                System.out.println(Responses.RESULT.getText() +
+                                   Action.action(firstValue,secondValue,arithmeticAction) +
+                                   "\n");
+            }
+        }
+    }
+
+    private String arithmeticActionSelector(String userCommand) {
+        String returnValue = null;
+            switch (userCommand) {
                 case("exit"):
                     appStatus = false;
-                    continue;
+                    break;
                 case("addition"):
                 case("+"):
-                    System.out.println("Selected addition \n");
+                    returnValue = "+";
                     break;
                 case("substraction"):
                 case("-"):
-                    System.out.println("Selected substraction \n");
+                    returnValue = "-";
                     break;
                 case("multiplication"):
                 case("*"):
-                    System.out.println("Selected multiplication \n");
+                    returnValue = "*";
                     break;
                 case("division"):
                 case(":"):
                 case("/"):
-                    System.out.println("Selected division \n");
+                    returnValue = ":";
+                    break;
+                case("percentage"):
+                case("%"):
+                    returnValue = "%";
                     break;
                 default:
-                    System.out.println("Wrong command. Try again \n");
                     break;
-            }
-
         }
+        return returnValue;
     }
-
 }

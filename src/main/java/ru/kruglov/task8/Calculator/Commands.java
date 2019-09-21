@@ -3,7 +3,7 @@ package ru.kruglov.task8.Calculator;
 public enum Commands {
     ADDITION("addition"),
     SUBSTRACTION("substraction"),
-    MULTIPLICATION("substraction"),
+    MULTIPLICATION("multiplication"),
     DIVISION("division"),
     PERCENTAGE("percentage");
 
