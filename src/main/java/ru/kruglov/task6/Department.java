@@ -13,4 +13,9 @@ public class Department extends University {
         super(newName, newAddress);
         this.speciality = newSpeciality;
     }
+
+    @Override
+    public String getName() {
+        return this.getClass().getSimpleName() + " " + super.name;
+    }
 }

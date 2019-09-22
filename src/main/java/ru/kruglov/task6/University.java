@@ -2,18 +2,14 @@ package ru.kruglov.task6;
 
 public class University {
     protected String name;
-    protected String address;
+    private String address;
 
     public String getName() {
-        return name;
+        return this.getClass().getSimpleName() + " " + this.name;
     }
 
     public String getAddress() {
         return address;
-    }
-
-    public void printName() {
-        System.out.println("Я университет " + name);
     }
 
     University(String newName, String newAddress) {
