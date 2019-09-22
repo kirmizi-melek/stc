@@ -1,11 +1,11 @@
 package ru.kruglov.task6;
 
 public class University {
-    private String name;
+    protected String name;
     private String address;
 
     public String getName() {
-        return name;
+        return this.getClass().getSimpleName() + " " + this.name;
     }
 
     public String getAddress() {
