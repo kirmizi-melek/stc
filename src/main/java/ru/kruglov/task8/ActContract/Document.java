@@ -2,12 +2,30 @@ package ru.kruglov.task8.ActContract;
 
 import java.util.Date;
 
-public class Document {
-    int number;
-    Date date;
-    String[] listOfGoods;
+abstract class Document {
+    private int number;
+    private Date date;
+    private String[] listOfGoods;
 
-    Document(){};
+    String[] getListOfGoods() {
+        return listOfGoods;
+    }
+
+    int getNumber() {
+        return number;
+    }
+
+    Date getDate() {
+        return date;
+    }
+
+    String getListOfGoodsInString() {
+        StringBuilder result = new StringBuilder();
+        for (String str : listOfGoods) {
+            result.append(str).append(", ");
+        }
+        return result.toString();
+    }
 
     Document(int no, Date date, String[] list) {
         this.number = no;
@@ -15,8 +33,16 @@ public class Document {
         this.listOfGoods = list;
     }
 
-    void getClassName() {
-        System.out.println("Document");
+    private String getClassName() {
+        return this.getClass().getSimpleName();
+    }
+
+    void getDocumentInfo() {
+        System.out.println(
+                "ClassName:" + this.getClassName() +
+                "\nNumber:" + this.getNumber() +
+                "\nDate:" + this.getDate() +
+                "\nList:" + this.getListOfGoodsInString());
     }
 }
 
