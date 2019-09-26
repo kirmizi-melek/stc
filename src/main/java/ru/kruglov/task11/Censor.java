@@ -5,13 +5,14 @@ import ru.kruglov.localLibs.InputDataHandle;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
-public class Censor {
+class Censor {
     private boolean appStatus;
     private BufferedReader buff;
     private String uncensoredPhrase;
     private String censoredPhrase;
-    private String censoredWord = "бяка";
+    private String uncensoredWord = "бяка";
     private String replacedCensoredWord = "вырезано цензурой";
 
     Censor() {
@@ -19,16 +20,43 @@ public class Censor {
         this.buff = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public void start() throws IOException {
+    public String getCensoredPhrase() {
+        return censoredPhrase;
+    }
+
+    private void setCensoredPhrase() {
+        this.censoredPhrase = censorPhrase();
+    }
+
+    void start() throws IOException {
         while (appStatus){
             System.out.println(Responses.HELLO.getText());
             uncensoredPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
-            censorPhrase();
-            System.out.println(censoredPhrase);
+            if (uncensoredPhrase.equals("exit")){
+                appStatus = false;
+            } else {
+                setCensoredPhrase();
+                System.out.println(getCensoredPhrase());
+            }
         }
     }
 
-    private void censorPhrase() {
-        censoredPhrase = uncensoredPhrase.replace(censoredWord, replacedCensoredWord);
+    private String censorPhrase() {
+        String sentence = uncensoredPhrase;
+        ArrayList<String> arraylist =new ArrayList<String>();
+        arraylist.add(uncensoredWord);
+        StringBuffer sb = new StringBuffer(100);
+        String[] words = sentence.split(" |\\,|\\.|;|\\?|\\!|\"|\\(|\\)" );
+
+        for(String word: words){
+            if(arraylist.contains(word)) {
+                for(int i = 0; i < word.length(); i++)
+                    sb.append("*");
+            } else {
+                sb.append(word);
+            }
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 }
