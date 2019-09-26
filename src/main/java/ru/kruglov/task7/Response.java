@@ -1,6 +1,6 @@
 package ru.kruglov.task7;
 
-public enum Responses {
+public enum Response {
     WELCOME ("Welcome to vending machine user interface. \n" +
             "Type \"help\" for getting more info."),
     HELP("Available commands: \n" +
@@ -24,8 +24,7 @@ public enum Responses {
     PUT_MONEY("Please, put money in coin acceptor");
 
     private String text;
-
-    Responses(String text) {
+    Response(String text) {
         this.text = text;
     }
 

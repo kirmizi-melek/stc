@@ -1,17 +1,13 @@
 package ru.kruglov.task7;
 
-class Deposite {
-    private int depositeSum = 0;
+class Deposit {
+    private int depositeSum;
 
-    int getDeposit() {
-        return depositeSum;
-    }
-
-    void setDeposite(int depositeSum) {
+    void increaseDeposite(int depositeSum) {
         this.depositeSum += depositeSum;
     }
 
-    boolean comparator(int drinkPrice) {
+    boolean priceAndDepositComparison(int drinkPrice) {
         return this.depositeSum >= drinkPrice;
     }
 
@@ -23,5 +19,9 @@ class Deposite {
 
     void decreaseDeposite(int priceOfDrink) {
         this.depositeSum -= priceOfDrink;
+    }
+
+    int getDeposit() {
+        return depositeSum;
     }
 }
