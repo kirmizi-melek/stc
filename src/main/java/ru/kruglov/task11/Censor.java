@@ -13,7 +13,7 @@ class Censor {
     private String uncensoredPhrase;
     private String censoredPhrase;
     private String uncensoredWord = "бяка";
-    private String replacedCensoredWord = "вырезано цензурой";
+    private String replacedCensoredWord = "<вырезано цензурой>";
 
     Censor() {
         this.appStatus = true;
@@ -45,18 +45,18 @@ class Censor {
         String sentence = uncensoredPhrase;
         ArrayList<String> arraylist =new ArrayList<String>();
         arraylist.add(uncensoredWord);
-        StringBuffer sb = new StringBuffer(100);
+        StringBuffer stringBuffer = new StringBuffer(100);
         String[] words = sentence.split(" |\\,|\\.|;|\\?|\\!|\"|\\(|\\)" );
 
         for(String word: words){
-            if(arraylist.contains(word)) {
-                for(int i = 0; i < word.length(); i++)
-                    sb.append("*");
+            System.out.println(word);
+            if(arraylist.contains(word.toLowerCase())) {
+                stringBuffer.append(replacedCensoredWord);
             } else {
-                sb.append(word);
+                stringBuffer.append(word);
             }
-            sb.append(" ");
+            stringBuffer.append(" ");
         }
-        return sb.toString();
+        return stringBuffer.toString();
     }
 }
