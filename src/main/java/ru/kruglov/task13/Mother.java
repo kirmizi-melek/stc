@@ -4,12 +4,13 @@ public class Mother {
     public static void main(String[] args) {
         Mother anna = new Mother();
         Child ivan = new Child();
-        anna.feed(ivan);
+        Food food = Food.PORRIGE;
+        anna.feed(ivan, food);
     }
 
-    private void feed(Child child){
+    private void feed(Child child, Food food){
         try {
-            child.eat(Food.PORRIGE);
+            child.eat(food);
         } catch (ChildFeedException e) {
             e.printStackTrace();
         } finally {
