@@ -46,10 +46,10 @@ class Censor {
         ArrayList<String> arraylist =new ArrayList<String>();
         arraylist.add(uncensoredWord);
         StringBuffer stringBuffer = new StringBuffer(100);
-        String[] words = sentence.split("[ ,.;?!\"()]" );
-
+        //String[] words = sentence.split("[ ,.;?!\"()]" );
+        String[] words = sentence.split("(?<=[ ,.;?!\"()])|(?=[ ,.;?!\"()])");
         for(String word: words){
-            System.out.println(word);
+            //System.out.println(word);
             if(arraylist.contains(word.toLowerCase())) {
                 stringBuffer.append(replacedCensoredWord);
             } else {
