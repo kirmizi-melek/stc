@@ -2,13 +2,13 @@ package ru.kruglov.task13;
 
 public class Mother {
     public static void main(String[] args) {
-        Mother anna = new Mother();
         Child ivan = new Child();
-        Food food = Food.PORRIGE;
-        anna.feed(ivan, food);
+        Mother anna = new Mother();
+        UserInterfaceHandler userInterfaceHandler = new UserInterfaceHandler();
+        userInterfaceHandler.start(anna, ivan);
     }
 
-    private void feed(Child child, Food food){
+    public void feed(Child child, Food food){
         try {
             child.eat(food);
         } catch (ChildFeedException e) {
@@ -17,4 +17,6 @@ public class Mother {
             child.sayThanks();
         }
     }
+
+
 }

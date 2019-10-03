@@ -9,7 +9,7 @@ public class Child {
     }
 
     public void sayThanks() {
-        System.out.println("Спасибо, мама");
+        System.out.println("Спасибо, мама \n");
     }
 
     private void sayThanksForTastyFood(Food food) {
