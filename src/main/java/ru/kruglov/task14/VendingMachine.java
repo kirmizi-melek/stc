@@ -1,7 +1,6 @@
 package ru.kruglov.task14;
 
 import ru.kruglov.localLibs.InputDataHandle;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,6 +24,7 @@ class VendingMachine {
                     drink.price + " " +
                     Response.CURRENCY.getText());
         }
+        LoggerExample.LOGGER.info("User gets menu");
     }
     private void takeMoney() {
             try {
@@ -32,7 +32,7 @@ class VendingMachine {
                 deposit.increaseDeposite(money);
                 System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
             } catch (IOException e) {
-                e.printStackTrace();
+                LoggerExample.LOGGER.warning(e.toString());
             }
     }
 
@@ -51,7 +51,7 @@ class VendingMachine {
                 System.out.println(Response.WRONG_DRINK_ID.getText());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerExample.LOGGER.warning(e.toString());
         }
     }
 

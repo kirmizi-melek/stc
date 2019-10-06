@@ -1,15 +1,13 @@
 package ru.kruglov.task14;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
-import static ru.kruglov.task7.Drink.COCACOLA;
-import static ru.kruglov.task7.Drink.PEPSI;
+import static ru.kruglov.task14.Drink.COCACOLA;
+import static ru.kruglov.task14.Drink.PEPSI;
 
 public class App {
     public static void main(String[] args) {
-        LoggerExample.LOGGER.info("бла");
-
+        LoggerExample.loggerConfig();
         App app = new App();
         app.start();
     }
@@ -19,7 +17,7 @@ public class App {
         try {
             vendingMachineHandler.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerExample.LOGGER.severe(e.toString());
         }
     }
 }
