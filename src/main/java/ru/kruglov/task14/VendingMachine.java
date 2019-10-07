@@ -4,6 +4,9 @@ import ru.kruglov.localLibs.InputDataHandle;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+
+import static ru.kruglov.task14.LoggerExample.LOGGER;
 
 class VendingMachine {
     private String brand;
@@ -24,7 +27,7 @@ class VendingMachine {
                     drink.price + " " +
                     Response.CURRENCY.getText());
         }
-        LoggerExample.LOGGER.info("User gets menu");
+        LOGGER.log(Level.INFO, "User requested menu");
     }
     private void takeMoney() {
             try {
@@ -32,7 +35,7 @@ class VendingMachine {
                 deposit.increaseDeposite(money);
                 System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
             } catch (IOException e) {
-                LoggerExample.LOGGER.warning(e.toString());
+                LOGGER.log(Level.WARNING, "Error with adding coins into vending machine", e);
             }
     }
 
@@ -46,12 +49,15 @@ class VendingMachine {
                     giveOutDrink(drinkID, cost);
                 } else {
                     System.out.println(Response.NOT_ENOUPH_MONEY.getText());
+
+                    LOGGER.log(Level.INFO, "User tried to order drink having no enough money");
                 }
             } else {
+                LOGGER.log(Level.INFO, "User selected wrong drink id");
                 System.out.println(Response.WRONG_DRINK_ID.getText());
             }
         } catch (IOException e) {
-            LoggerExample.LOGGER.warning(e.toString());
+            LOGGER.warning(e.toString());
         }
     }
 
@@ -60,6 +66,7 @@ class VendingMachine {
         System.out.println(getDrink() +
                 getNameForSelectedDrink(drinks, id));
         System.out.println("Your deposit balance: " + deposit.getDeposit());
+        LOGGER.log(Level.INFO, "User got his drink: " + getNameForSelectedDrink(drinks, id));
     }
 
     private static int getPriceForSelectedDrink(Drink[] allDrinks, int id){
@@ -97,6 +104,7 @@ class VendingMachine {
                 switch (inputPhrase) {
                     case ("exit") :
                         System.out.println(Response.GOODBYE.getText());
+                        LOGGER.log(Level.INFO, "User left the vending machine");
                         appStatus = false;
                         break;
                     case ("menu") :
@@ -104,6 +112,7 @@ class VendingMachine {
                         break;
                     case ("help") :
                         System.out.println(Response.HELP.getText());
+                        LOGGER.log(Level.INFO, "User asked the help");
                         break;
                     case ("deposit"):
                         System.out.println(Response.PUT_MONEY.getText());
@@ -115,12 +124,15 @@ class VendingMachine {
                         break;
                     case ("change"):
                         System.out.println(Response.TAKE_CHANGE.getText() + deposit.getChange());
+                        //LOGGER.log(Level.INFO, "User requested the change");
                         break;
                     case ("check"):
                         System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
+                        LOGGER.log(Level.INFO, "User checked the balance");
                         break;
                     default:
                         System.out.println(Response.WRONG_INPUT.getText());
+                        LOGGER.log(Level.INFO, "User typed wrong command");
                         break;
                 }
             }
