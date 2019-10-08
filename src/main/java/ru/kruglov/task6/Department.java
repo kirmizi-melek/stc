@@ -1,21 +1,19 @@
 package ru.kruglov.task6;
 
-public class Department extends University {
+public class Department {
+    private String name;
     private String speciality;
 
     public String getSpeciality() {
         return speciality;
     }
 
-    Department(String newName,
-               String newAddress,
-               String newSpeciality) {
-        super(newName, newAddress);
+    Department(String newName,String newSpeciality) {
+        this.name = newName;
         this.speciality = newSpeciality;
     }
 
-    @Override
     public String getName() {
-        return this.getClass().getSimpleName() + " " + super.name;
+        return this.getClass().getSimpleName() + " " + this.name;
     }
 }

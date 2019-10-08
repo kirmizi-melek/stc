@@ -9,15 +9,13 @@ public class Main {
     private void make() {
         StudyGroup groupOfStudy = new StudyGroup(
                 "groupOfStudy",
-                "Address1" ,
                 "IT",
                 10,
                 15
         );
 
-        University groupOfUniversity = new StudyGroup(
+        StudyGroup groupOfUniversity = new StudyGroup(
                 "groupOfUniversity",
-                "Address2" ,
                 "IT",
                 20,
                 30
@@ -33,18 +31,13 @@ public class Main {
                 "AddressOfCambridge"
         );
 
-        University department = new Department(
-                "CambridgeDepartment",
-                "Address",
-                "IT"
-        );
-
+        cambridge.addDepartment("CambridgeDepartment", "IT");
+        cambridge.getDepartments();
         System.out.println(
             groupOfStudy.getName() + "\n"+
             groupOfUniversity.getName() + "\n" +
             oxford.getName() + "\n" +
             cambridge.getName()    + "\n" +
-            department.getName()
         );
     }
 }

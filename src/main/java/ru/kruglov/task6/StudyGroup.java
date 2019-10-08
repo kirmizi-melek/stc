@@ -13,11 +13,10 @@ public class StudyGroup extends Department {
     }
 
     StudyGroup(String newName,
-               String newAddress,
                String newSpeciality,
                int newGroupNumber,
                int newCountOfStudents) {
-        super(newName, newAddress, newSpeciality);
+        super(newName, newSpeciality);
         this.groupNumber = newGroupNumber;
         this.countOfStudents = newCountOfStudents;
     }
