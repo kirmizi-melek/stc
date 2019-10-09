@@ -2,9 +2,6 @@ package ru.kruglov.task14;
 
 import java.io.IOException;
 
-import static ru.kruglov.task7.Drink.COCACOLA;
-import static ru.kruglov.task7.Drink.PEPSI;
-
 public class App {
     public static void main(String[] args) {
         App app = new App();
