@@ -65,8 +65,7 @@ class VendingMachine {
         deposit.decreaseDeposite(cost);
         System.out.println(getDrink() + getSelectedDrink(id).name);
         System.out.println("Your deposit balance: " + deposit.getDeposit());
-        LOGGER.log(Level.INFO, "User got his drink: " + getNameForSelectedDrink(drinks, id));
-
+        LOGGER.log(Level.INFO, "User got his drink: " + getSelectedDrink(id).name);
     }
 
     private Drink getSelectedDrink(int id){
@@ -113,12 +112,10 @@ class VendingMachine {
                         break;
                     case ("change"):
                         System.out.println(Response.TAKE_CHANGE.getText() + deposit.getChange());
-                        //LOGGER.log(Level.INFO, "User requested the change");
                         break;
                     case ("check"):
                         System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
-                        LOGGER.log(Level.INFO, "User got his drink: " + getNameForSelectedDrink(drinks, id));
-R.log(Level.INFO, "User checked the balance");
+                        LOGGER.log(Level.INFO, "User checked the balance");
                         break;
                     default:
                         System.out.println(Response.WRONG_INPUT.getText());
