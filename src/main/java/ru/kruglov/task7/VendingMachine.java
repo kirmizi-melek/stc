@@ -26,20 +26,20 @@ class VendingMachine {
         }
     }
     private void takeMoney() {
-            try {
-                int money = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
-                deposit.increaseDeposite(money);
-                System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            int money = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
+            deposit.increaseDeposite(money);
+            System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void makeDeal() {
         try {
             int drinkID = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
-            int cost = getSelectedDrink(drinkID).price;
-            String drinkName = getSelectedDrink(drinkID).name;
+            int cost = getPriceForSelectedDrink(drinks, drinkID);
+            String drinkName = getNameForSelectedDrink(drinks, drinkID);
             if (drinkName != null) {
                 if (deposit.priceAndDepositComparison(cost)) {
                     giveOutDrink(drinkID, cost);
@@ -56,14 +56,26 @@ class VendingMachine {
 
     private void giveOutDrink(int id, int cost) {
         deposit.decreaseDeposite(cost);
-        System.out.println(getDrink() + getSelectedDrink(id).name);
+        System.out.println(getDrink() +
+                getNameForSelectedDrink(drinks, id));
         System.out.println("Your deposit balance: " + deposit.getDeposit());
     }
 
-    private Drink getSelectedDrink(int id){
-        for (Drink drink : drinks) {
+    private static int getPriceForSelectedDrink(Drink[] allDrinks, int id){
+        int priceOfDrink = 0;
+        for (Drink drink : allDrinks) {
             if (id == drink.id) {
-                return drink;
+                priceOfDrink = drink.price;
+                break;
+            }
+        }
+        return priceOfDrink;
+    }
+
+    private static String getNameForSelectedDrink(Drink[] allDrinks, int id) {
+        for (Drink drink : allDrinks) {
+            if (id == drink.id) {
+                return drink.name;
             }
         }
         return null;
