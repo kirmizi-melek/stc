@@ -9,14 +9,12 @@ public class Main {
     private void make() {
         StudyGroup groupOfStudy = new StudyGroup(
                 "groupOfStudy",
-                "IT",
                 10,
                 15
         );
 
         StudyGroup groupOfUniversity = new StudyGroup(
                 "groupOfUniversity",
-                "IT",
                 20,
                 30
         );
@@ -37,7 +35,7 @@ public class Main {
             groupOfStudy.getName() + "\n"+
             groupOfUniversity.getName() + "\n" +
             oxford.getName() + "\n" +
-            cambridge.getName()    + "\n" +
+            cambridge.getName()    + "\n" 
         );
     }
 }

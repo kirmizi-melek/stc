@@ -1,6 +1,7 @@
 package ru.kruglov.task6;
 
-public class StudyGroup extends Department {
+public class StudyGroup {
+    private String name;
     private int groupNumber;
     private int countOfStudents;
 
@@ -13,16 +14,14 @@ public class StudyGroup extends Department {
     }
 
     StudyGroup(String newName,
-               String newSpeciality,
                int newGroupNumber,
                int newCountOfStudents) {
-        super(newName, newSpeciality);
+        this.name = newName;
         this.groupNumber = newGroupNumber;
         this.countOfStudents = newCountOfStudents;
     }
 
-    @Override
     public String getName() {
-        return "Group " + super.name;
+        return "Group " + name;
     }
 }
