@@ -1,8 +1,6 @@
 package ru.kruglov.task14;
 
 import java.io.IOException;
-import static ru.kruglov.task14.Drink.COCACOLA;
-import static ru.kruglov.task14.Drink.PEPSI;
 import static ru.kruglov.task14.LoggerExample.LOGGER;
 import java.util.logging.Level;
 

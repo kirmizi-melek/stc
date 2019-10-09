@@ -42,8 +42,8 @@ class VendingMachine {
     private void makeDeal() {
         try {
             int drinkID = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
-            int cost = getPriceForSelectedDrink(drinks, drinkID);
-            String drinkName = getNameForSelectedDrink(drinks, drinkID);
+            int cost = getSelectedDrink(drinkID).price;
+            String drinkName = getSelectedDrink(drinkID).name;
             if (drinkName != null) {
                 if (deposit.priceAndDepositComparison(cost)) {
                     giveOutDrink(drinkID, cost);
@@ -63,27 +63,16 @@ class VendingMachine {
 
     private void giveOutDrink(int id, int cost) {
         deposit.decreaseDeposite(cost);
-        System.out.println(getDrink() +
-                getNameForSelectedDrink(drinks, id));
+        System.out.println(getDrink() + getSelectedDrink(id).name);
         System.out.println("Your deposit balance: " + deposit.getDeposit());
         LOGGER.log(Level.INFO, "User got his drink: " + getNameForSelectedDrink(drinks, id));
+
     }
 
-    private static int getPriceForSelectedDrink(Drink[] allDrinks, int id){
-        int priceOfDrink = 0;
-        for (Drink drink : allDrinks) {
+    private Drink getSelectedDrink(int id){
+        for (Drink drink : drinks) {
             if (id == drink.id) {
-                priceOfDrink = drink.price;
-                break;
-            }
-        }
-        return priceOfDrink;
-    }
-
-    private static String getNameForSelectedDrink(Drink[] allDrinks, int id) {
-        for (Drink drink : allDrinks) {
-            if (id == drink.id) {
-                return drink.name;
+                return drink;
             }
         }
         return null;
@@ -128,7 +117,8 @@ class VendingMachine {
                         break;
                     case ("check"):
                         System.out.println(Response.CURRENT_DEPOSIT.getText() + deposit.getDeposit());
-                        LOGGER.log(Level.INFO, "User checked the balance");
+                        LOGGER.log(Level.INFO, "User got his drink: " + getNameForSelectedDrink(drinks, id));
+R.log(Level.INFO, "User checked the balance");
                         break;
                     default:
                         System.out.println(Response.WRONG_INPUT.getText());
