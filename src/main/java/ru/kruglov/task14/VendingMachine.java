@@ -49,8 +49,7 @@ class VendingMachine {
                     giveOutDrink(drinkID, cost);
                 } else {
                     System.out.println(Response.NOT_ENOUPH_MONEY.getText());
-
-                    LOGGER.log(Level.INFO, "User tried to order drink having no enough money");
+                    LOGGER.log(Level.INFO, "User tried to order drink not having enough money");
                 }
             } else {
                 LOGGER.log(Level.INFO, "User selected wrong drink id");
