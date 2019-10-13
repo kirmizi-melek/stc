@@ -12,9 +12,11 @@ public class FileAction {
     void createFile() {
         try {
             file.createNewFile();
+            Responses.CREATE_FILE_SUCCESS.printMessage();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
     void renameFile(String path) {
         File tempFile = new File(path);
