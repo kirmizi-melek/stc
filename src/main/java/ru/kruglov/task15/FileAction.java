@@ -1,46 +1,101 @@
 package ru.kruglov.task15;
 
+import ru.kruglov.localLibs.InputDataHandle;
+
 import java.io.*;
 
-public class FileAction {
-    File file;
+class FileAction {
+    private File file;
+    BufferedReader buff;
 
-    FileAction(String path) {
-        file = new File(path);
+    public FileAction(BufferedReader buff) {
+        this.buff = buff;
     }
 
     void createFile() {
         try {
-            file.createNewFile();
-            Responses.CREATE_FILE_SUCCESS.printMessage();
+            Responses.CREATE_NEW_FILE_NAME.printMessage();
+            String pathToFile = InputDataHandle.getDataFromSystemIn(buff);
+            file = new File (pathToFile);
+            if (!file.exists() && !file.isDirectory()) {
+                file.createNewFile();
+                Responses.SUCCESSFUL_OPERATION.printMessage();
+            } else {
+                Responses.UNSECCESSFUL_OPERATION.printMessage();
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error during creating file");
         }
-
     }
-    void renameFile(String path) {
-        File tempFile = new File(path);
-        file.renameTo(tempFile);
+
+    void renameFile() {
+        try {
+            Responses.RENAME_ORIGIN_NAME.printMessage();
+            String originName = InputDataHandle.getDataFromSystemIn(this.buff);
+            Responses.RENAME_NEW_NAME.printMessage();
+            String newName = InputDataHandle.getDataFromSystemIn(this.buff);
+            file = new File(originName);
+            if (file.exists() && !file.isDirectory()) {
+                File tempFile = new File(newName);
+                file.renameTo(tempFile);
+                Responses.SUCCESSFUL_OPERATION.printMessage();
+            } else {
+                Responses.UNSECCESSFUL_OPERATION.printMessage();
+            }
+        } catch (IOException e) {
+            System.out.println("Error during renaming file");
+        }
     }
 
     void deleteFile() {
-        file.delete();
+        try {
+            Responses.DELETE_FILE_NAME.printMessage();
+            String name = InputDataHandle.getDataFromSystemIn(this.buff);
+            file = new File(name);
+            if (file.exists() && !file.isDirectory()) {
+                file.delete();
+                Responses.SUCCESSFUL_OPERATION.printMessage();
+            } else {
+                Responses.UNSECCESSFUL_OPERATION.printMessage();
+            }
+        } catch (IOException e) {
+            System.out.println("Error during deleting file");
+        }
     }
 
-    void copyFile(String path)  {
-        File newFile = new File(path);
-        try(InputStream inputStream = new BufferedInputStream(
+    void copyFile() {
+        try {
+            Responses.COPY_FROM_ORIGIN_PATH.printMessage();
+            String originPath = InputDataHandle.getDataFromSystemIn(buff);
+            file = new File(originPath);
+            if (file.exists() && !file.isDirectory()) {
+                Responses.COPY_TO_NEW_PATH.printMessage();
+                String newPath = InputDataHandle.getDataFromSystemIn(buff);
+                copy(newPath);
+                Responses.SUCCESSFUL_OPERATION.printMessage();
+            }   else {
+                Responses.UNSECCESSFUL_OPERATION.printMessage();
+            }
+        } catch (IOException e) {
+            System.out.println("Error durring getting data from system input");
+        }
+    }
+
+    private void copy(String pathOfNewFile) {
+        File newFile = new File(pathOfNewFile);
+        try (InputStream inputStream = new BufferedInputStream(
                 new FileInputStream(file));
-            OutputStream outputStream = new BufferedOutputStream(
-                new FileOutputStream(newFile))) {
+             OutputStream outputStream = new BufferedOutputStream(
+                     new FileOutputStream(newFile))) {
             byte[] buffer = new byte[1024];
             int lengthRead;
-            while ((lengthRead = inputStream.read(buffer))>0) {
-                outputStream.write(buffer, 0 , lengthRead);
+            while ((lengthRead = inputStream.read(buffer)) > 0) {
+                outputStream.write(buffer, 0, lengthRead);
                 outputStream.flush();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("Error during copying file");
         }
     }
 }

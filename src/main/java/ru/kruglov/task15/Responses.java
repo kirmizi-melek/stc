@@ -9,14 +9,15 @@ public enum Responses {
             "delete - for deleting file \n"+
             "copy - for copy file to new place\n"),
     GOODBYE("Application is  closing.\n"),
-    CREATE_FILE_SUCCESS("File was successully created\n"),
+    CREATE_NEW_FILE_NAME("Enter a path of new file"),
     COPY_FROM_ORIGIN_PATH ("Enter path of file which you want to copy"),
     COPY_TO_NEW_PATH ("Enter a new destination of copied file"),
     WRONG_INPUT("Wrong input parameter\n"),
     RENAME_ORIGIN_NAME("Enter path of file, which you want to rename"),
     RENAME_NEW_NAME("Enter new name of file"),
-    SUCCESSFUL_OPERATION("Operation has been successfully finished"),
-    DELETE_FILE_NAME("Enter path of file which you want to delete");
+    SUCCESSFUL_OPERATION("Operation has been successfully finished\n"),
+    DELETE_FILE_NAME("Enter path of file which you want to delete"),
+    UNSECCESSFUL_OPERATION("Error during execution of operation");
 
     private String text;
 
