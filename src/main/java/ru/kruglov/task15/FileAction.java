@@ -71,31 +71,13 @@ class FileAction {
             if (file.exists() && !file.isDirectory()) {
                 Responses.COPY_TO_NEW_PATH.printMessage();
                 String newPath = InputDataHandle.getDataFromSystemIn(buff);
-                copy(newPath);
+                FileCopier.fileCopier(file, newPath);
                 Responses.SUCCESSFUL_OPERATION.printMessage();
             }   else {
                 Responses.UNSECCESSFUL_OPERATION.printMessage();
             }
         } catch (IOException e) {
             System.out.println("Error durring getting data from system input");
-        }
-    }
-
-    private void copy(String pathOfNewFile) {
-        File newFile = new File(pathOfNewFile);
-        try (InputStream inputStream = new BufferedInputStream(
-                new FileInputStream(file));
-             OutputStream outputStream = new BufferedOutputStream(
-                     new FileOutputStream(newFile))) {
-            byte[] buffer = new byte[1024];
-            int lengthRead;
-            while ((lengthRead = inputStream.read(buffer)) > 0) {
-                outputStream.write(buffer, 0, lengthRead);
-                outputStream.flush();
-            }
-        } catch (IOException e) {
-            //e.printStackTrace();
-            System.out.println("Error during copying file");
         }
     }
 }
