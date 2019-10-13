@@ -6,25 +6,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class UIHandler {
+class Application {
     private BufferedReader buff;
+    boolean appStatus = true;
 
-    UIHandler() {
+    Application() {
         buff = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    void fileWorker() throws IOException {
-        boolean appStatus = true;
+    private void exitApp() throws IOException {
+        Responses.GOODBYE.printMessage();
+        buff.close();
+        appStatus = false;
+    }
+
+    private void getHelp() {
+        Responses.HELP.printMessage();
+    }
+
+    void appHandler() throws IOException {
         while (appStatus) {
             Responses.WELCOME.printMessage();
             try {
                 String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
                 if (inputPhrase.equals(Commands.HELP.getMessage())) {
-                    Responses.HELP.printMessage();
+                    getHelp();
                 } else if (inputPhrase.equals(Commands.EXIT.getMessage())) {
-                    Responses.GOODBYE.printMessage();
-                    buff.close();
-                    appStatus = false;
+                    exitApp();
                 } else if (inputPhrase.equals(Commands.CREATE.getMessage())) {
                     new FileAction(buff).createFile();
                 } else if (inputPhrase.equals(Commands.COPY.getMessage())) {
@@ -34,12 +42,16 @@ class UIHandler {
                 } else if (inputPhrase.equals(Commands.DELETE.getMessage())) {
                     new FileAction(buff).deleteFile();
                 } else {
-                    Responses.WRONG_INPUT.printMessage();
+                    wrongInput();
                 }
             } catch (IOException e) {
                 buff.close();
                 e.printStackTrace();
             }
         }
+    }
+
+    private void wrongInput() {
+        Responses.WRONG_INPUT.printMessage();
     }
 }

@@ -17,7 +17,7 @@ public enum Responses {
     RENAME_NEW_NAME("Enter new name of file"),
     SUCCESSFUL_OPERATION("Operation has been successfully finished\n"),
     DELETE_FILE_NAME("Enter path of file which you want to delete"),
-    UNSECCESSFUL_OPERATION("Error during execution of operation");
+    UNSECCESSFUL_OPERATION("Target is not a file or not exist");
 
     private String text;
 
