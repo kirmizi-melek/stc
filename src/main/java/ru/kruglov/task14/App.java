@@ -16,11 +16,11 @@ public class App {
     }
 
     private void start() {
-        VendingMachine.UserInterfaceHandler vendingMachineHandler;
-        vendingMachineHandler = new VendingMachine(vendingMachineName, COCACOLA, PEPSI).new UserInterfaceHandler();
+        UserInterfaceHandler vendingMachineHandler = new UserInterfaceHandler();
+        VendingMachine vendingMachine = new VendingMachine(vendingMachineName, COCACOLA, PEPSI);
         try {
             LOGGER.log(Level.INFO, "Vending machine " + vendingMachineName + " started to work");
-            vendingMachineHandler.start();
+            vendingMachineHandler.start(vendingMachine);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Error with starting vending machine", e);
         }

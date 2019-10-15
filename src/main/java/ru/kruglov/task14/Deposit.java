@@ -28,7 +28,7 @@ class Deposit {
         this.depositeSum -= priceOfDrink;
     }
 
-    int getDeposit() {
+    public int getDeposit() {
         return depositeSum;
     }
 }
