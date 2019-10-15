@@ -41,6 +41,8 @@ class Application {
                     new FileAction(buff).renameFile();
                 } else if (inputPhrase.equals(Commands.DELETE.getMessage())) {
                     new FileAction(buff).deleteFile();
+                } else if (inputPhrase.equals(Commands.TRAVERSAL.getMessage())) {
+                    new TreeTraversal(buff);
                 } else {
                     wrongInput();
                 }

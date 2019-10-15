@@ -6,7 +6,8 @@ public enum Commands {
     CREATE("create"),
     COPY("copy"),
     RENAME("rename"),
-    DELETE("delete");
+    DELETE("delete"),
+    TRAVERSAL("traversal");
 
     private String text;
 
