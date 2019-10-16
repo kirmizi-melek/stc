@@ -49,27 +49,33 @@ public class UserInterfaceHandler {
                         int money = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
                         vendingMachine.takeMoney(money);
                         System.out.println(Response.CURRENT_DEPOSIT.getText() + vendingMachine.getDepositSum());
-                    } catch (IOException e) {
+                        break;
+                    } catch (IOException | NumberFormatException e) {
+                        System.out.println(Response.WRONG_INPUT.getText());
                         LOGGER.log(Level.WARNING, "Error with adding coins into vending machine", e);
+                        break;
                     }
-                    break;
                 case ("drink"):
                     System.out.println(Response.SELECT_DRINK.getText());
-                    try{
+                    try {
                         int drinkID = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
                         vendingMachine.makeDeal(drinkID);
                         System.out.println( vendingMachine.getDrink() +  vendingMachine.getSelectedDrink(drinkID));
                         System.out.println("Your deposit balance: " + vendingMachine.getDepositSum());
-                    } catch(NoMoneyException e) {
+                        break;
+                    } catch (NoMoneyException e) {
                         System.out.println(Response.NOT_ENOUPH_MONEY.getText());
                         LOGGER.log(Level.INFO, "User tried to order drink not having enough money");
-                    } catch (IOException e) {
+                        break;
+                    }  catch (IOException | NullPointerException e) {
+                        System.out.println(Response.WRONG_INPUT.getText());
                         LOGGER.warning(e.toString());
-                    } catch (DrinkNotFoundException e) {
+                        break;
+                    }  catch (DrinkNotFoundException e) {
                         LOGGER.log(Level.INFO, "User selected wrong drink id");
                         System.out.println(Response.WRONG_DRINK_ID.getText());
+                        break;
                     }
-                    break;
                 case ("change"):
                     System.out.println(Response.TAKE_CHANGE.getText() + vendingMachine.getChange());
                     break;
