@@ -31,4 +31,5 @@ public enum Response {
     public String getText() {
         return text;
     }
+    
 }
