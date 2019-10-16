@@ -1,9 +1,5 @@
 package ru.kruglov.task14;
 
-import ru.kruglov.localLibs.InputDataHandle;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 
 import static ru.kruglov.task14.LoggerExample.LOGGER;

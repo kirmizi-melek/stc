@@ -15,8 +15,4 @@ public enum Drink {
         this.name = newName;
         this.price = newPrice;
     }
-
-
-
-
 }
