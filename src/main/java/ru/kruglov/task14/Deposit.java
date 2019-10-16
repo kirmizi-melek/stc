@@ -17,7 +17,7 @@ class Deposit {
         return this.depositeSum >= drinkPrice;
     }
 
-    int getChange() {
+    public int getChange() {
         int change = this.depositeSum;
         LOGGER.log (Level.INFO, "User returned back his deposit: " + change + " rubles" );
         depositeSum = 0;

@@ -27,6 +27,10 @@ class VendingMachine {
         this.drinks = drinks;
     }
 
+    public int getChange() {
+        return deposit.getChange();
+    }
+
 
     public void takeMoney(int money) {
         deposit.increaseDeposite(money);

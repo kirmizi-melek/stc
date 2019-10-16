@@ -71,7 +71,7 @@ public class UserInterfaceHandler {
                     }
                     break;
                 case ("change"):
-                    System.out.println(Response.TAKE_CHANGE.getText() + vendingMachine.getDepositSum());
+                    System.out.println(Response.TAKE_CHANGE.getText() + vendingMachine.getChange());
                     break;
                 case ("check"):
                     System.out.println(Response.CURRENT_DEPOSIT.getText() + vendingMachine.getDepositSum());
