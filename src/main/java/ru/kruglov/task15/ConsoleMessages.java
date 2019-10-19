@@ -1,6 +1,6 @@
 package ru.kruglov.task15;
 
-public enum Responses {
+public enum ConsoleMessages implements MessagesInterface {
     WELCOME ("Select action \n" +
             "Type \"help\" for getting more info."),
     HELP("Use these commands: \n" +
@@ -18,11 +18,13 @@ public enum Responses {
     SUCCESSFUL_OPERATION("Operation has been successfully finished\n"),
     DELETE_FILE_NAME("Enter path of file which you want to delete"),
     UNSECCESSFUL_OPERATION("Target is not a file or not exist"),
-    TREE_TRAVERSAL("Enter path to folder for recursive traversal");
+    TREE_TRAVERSAL("Enter path to folder for recursive traversal"),
+    FOLDER_NOT_EXIST("Folder does not exist\n"),
+    TARGET_IS_A_FILE("Target is a file\n");
 
     private String text;
 
-    Responses(String text) {
+    ConsoleMessages(String text) {
         this.text = text;
     }
 

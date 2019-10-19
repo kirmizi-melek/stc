@@ -16,21 +16,20 @@ public class TreeTraversal {
 
     void method() {
         try {
-            Responses.TREE_TRAVERSAL.printMessage();
+            ConsoleMessages.TREE_TRAVERSAL.printMessage();
             String pathToFolder = InputDataHandle.getDataFromSystemIn(buff);
             File folder = new File(pathToFolder);
             if (!folder.exists()) {
-                System.out.println("Folder is not exist");
+                ConsoleMessages.FOLDER_NOT_EXIST.printMessage();
             } else {
                 if (folder.isFile()) {
-                    System.out.println("Target is a file");
+                    ConsoleMessages.TARGET_IS_A_FILE.printMessage();
                 } else {
                     list(folder);
                 }
             }
-
         } catch (IOException e) {
-            System.out.println("IOException");
+            ExceptionMessages.ERROR_TREE_TRAVERSAL.printMessage();
             e.printStackTrace();
         }
     }
@@ -38,19 +37,13 @@ public class TreeTraversal {
     private void list(File folder) {
         String folderPath = folder.getAbsolutePath();
         String[] listOfPaths = folder.list();
-        for(int i = 0; i < listOfPaths.length; i++)
-        {
-            File f1 = new File(folderPath +
-                    File.separator + listOfPaths[i]);
-
-            if(f1.isFile())
-                System.out.println(folderPath + File.separator + listOfPaths[i]);
-            else
-            {
-                list(new File(folderPath + File.separator + listOfPaths[i]));
+        for (String listOfPath : listOfPaths) {
+            File f1 = new File(folderPath + File.separator + listOfPath);
+            if (f1.isFile())
+                System.out.println(folderPath + File.separator + listOfPath);
+            else {
+                list(new File(folderPath + File.separator + listOfPath));
             }
         }
-
-
     }
 }

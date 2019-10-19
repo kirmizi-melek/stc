@@ -16,8 +16,9 @@ public class FileCopier {
                 outputStream.flush();
             }
         } catch (IOException e) {
-            //e.printStackTrace();
-            System.out.println("Error during copying file");
+            ExceptionMessages.ERROR_COPY.printMessage();
+            e.printStackTrace();
+            System.out.println();
         }
     }
 }

@@ -14,14 +14,14 @@ class FileAction {
 
     void createFile() {
         try {
-            Responses.CREATE_NEW_FILE_NAME.printMessage();
+            ConsoleMessages.CREATE_NEW_FILE_NAME.printMessage();
             String pathToFile = InputDataHandle.getDataFromSystemIn(buff);
             file = new File (pathToFile);
             if (!file.exists() && !file.isDirectory()) {
                 file.createNewFile();
-                Responses.SUCCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.SUCCESSFUL_OPERATION.printMessage();
             } else {
-                Responses.UNSECCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.UNSECCESSFUL_OPERATION.printMessage();
             }
         } catch (IOException e) {
             System.out.println("Error during creating file");
@@ -30,17 +30,17 @@ class FileAction {
 
     void renameFile() {
         try {
-            Responses.RENAME_ORIGIN_NAME.printMessage();
+            ConsoleMessages.RENAME_ORIGIN_NAME.printMessage();
             String originName = InputDataHandle.getDataFromSystemIn(this.buff);
-            Responses.RENAME_NEW_NAME.printMessage();
+            ConsoleMessages.RENAME_NEW_NAME.printMessage();
             String newName = InputDataHandle.getDataFromSystemIn(this.buff);
             file = new File(originName);
             if (file.exists() && !file.isDirectory()) {
                 File tempFile = new File(newName);
                 file.renameTo(tempFile);
-                Responses.SUCCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.SUCCESSFUL_OPERATION.printMessage();
             } else {
-                Responses.UNSECCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.UNSECCESSFUL_OPERATION.printMessage();
             }
         } catch (IOException e) {
             System.out.println("Error during renaming file");
@@ -49,14 +49,14 @@ class FileAction {
 
     void deleteFile() {
         try {
-            Responses.DELETE_FILE_NAME.printMessage();
+            ConsoleMessages.DELETE_FILE_NAME.printMessage();
             String name = InputDataHandle.getDataFromSystemIn(this.buff);
             file = new File(name);
             if (file.exists() && !file.isDirectory()) {
                 file.delete();
-                Responses.SUCCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.SUCCESSFUL_OPERATION.printMessage();
             } else {
-                Responses.UNSECCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.UNSECCESSFUL_OPERATION.printMessage();
             }
         } catch (IOException e) {
             System.out.println("Error during deleting file");
@@ -65,16 +65,16 @@ class FileAction {
 
     void copyFile() {
         try {
-            Responses.COPY_FROM_ORIGIN_PATH.printMessage();
+            ConsoleMessages.COPY_FROM_ORIGIN_PATH.printMessage();
             String originPath = InputDataHandle.getDataFromSystemIn(buff);
             file = new File(originPath);
             if (file.exists() && !file.isDirectory()) {
-                Responses.COPY_TO_NEW_PATH.printMessage();
+                ConsoleMessages.COPY_TO_NEW_PATH.printMessage();
                 String newPath = InputDataHandle.getDataFromSystemIn(buff);
                 FileCopier.fileCopier(file, newPath);
-                Responses.SUCCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.SUCCESSFUL_OPERATION.printMessage();
             }   else {
-                Responses.UNSECCESSFUL_OPERATION.printMessage();
+                ConsoleMessages.UNSECCESSFUL_OPERATION.printMessage();
             }
         } catch (IOException e) {
             System.out.println("Error durring getting data from system input");

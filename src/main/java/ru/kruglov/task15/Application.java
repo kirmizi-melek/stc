@@ -15,45 +15,46 @@ class Application {
     }
 
     private void exitApp() throws IOException {
-        Responses.GOODBYE.printMessage();
+        ConsoleMessages.GOODBYE.printMessage();
         buff.close();
         appStatus = false;
     }
 
     private void getHelp() {
-        Responses.HELP.printMessage();
+        ConsoleMessages.HELP.printMessage();
     }
 
     void appHandler() throws IOException {
         while (appStatus) {
-            Responses.WELCOME.printMessage();
+            ConsoleMessages.WELCOME.printMessage();
             try {
                 String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
-                if (inputPhrase.equals(Commands.HELP.getMessage())) {
+                if (inputPhrase.equals(CommandMessages.HELP.getMessage())) {
                     getHelp();
-                } else if (inputPhrase.equals(Commands.EXIT.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.EXIT.getMessage())) {
                     exitApp();
-                } else if (inputPhrase.equals(Commands.CREATE.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.CREATE.getMessage())) {
                     new FileAction(buff).createFile();
-                } else if (inputPhrase.equals(Commands.COPY.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.COPY.getMessage())) {
                     new FileAction(buff).copyFile();
-                } else if (inputPhrase.equals(Commands.RENAME.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.RENAME.getMessage())) {
                     new FileAction(buff).renameFile();
-                } else if (inputPhrase.equals(Commands.DELETE.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.DELETE.getMessage())) {
                     new FileAction(buff).deleteFile();
-                } else if (inputPhrase.equals(Commands.TRAVERSAL.getMessage())) {
+                } else if (inputPhrase.equals(CommandMessages.TRAVERSAL.getMessage())) {
                     new TreeTraversal(buff);
                 } else {
                     wrongInput();
                 }
             } catch (IOException e) {
                 buff.close();
+                ExceptionMessages.ERROR_APP_HANDLER.printMessage();
                 e.printStackTrace();
             }
         }
     }
 
     private void wrongInput() {
-        Responses.WRONG_INPUT.printMessage();
+        ConsoleMessages.WRONG_INPUT.printMessage();
     }
 }

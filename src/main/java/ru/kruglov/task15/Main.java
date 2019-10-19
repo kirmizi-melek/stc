@@ -8,6 +8,7 @@ public class Main {
             Application uiHandler = new Application();
             uiHandler.appHandler();
         } catch (IOException e) {
+            ExceptionMessages.ERROR_RUN_APPLICATION.printMessage();
             e.printStackTrace();
         }
     }

@@ -1,6 +1,6 @@
 package ru.kruglov.task15;
 
-public enum Commands {
+public enum CommandMessages implements MessagesInterface {
     HELP ("help"),
     EXIT("exit"),
     CREATE("create"),
@@ -11,11 +11,16 @@ public enum Commands {
 
     private String text;
 
-    Commands(String text) {
+    CommandMessages(String text) {
         this.text = text;
     }
 
     public String getMessage() {
         return text;
+    }
+
+    @Override
+    public void printMessage() {
+        System.out.println(text);
     }
 }
