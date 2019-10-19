@@ -11,6 +11,7 @@ public class TreeTraversal {
 
     TreeTraversal(BufferedReader buff) {
         this.buff = buff;
+        method();
     }
 
     void method() {
@@ -29,11 +30,27 @@ public class TreeTraversal {
             }
 
         } catch (IOException e) {
-
+            System.out.println("IOException");
+            e.printStackTrace();
         }
     }
 
     private void list(File folder) {
+        String folderPath = folder.getAbsolutePath();
+        String[] listOfPaths = folder.list();
+        for(int i = 0; i < listOfPaths.length; i++)
+        {
+            File f1 = new File(folderPath +
+                    File.separator + listOfPaths[i]);
+
+            if(f1.isFile())
+                System.out.println(folderPath + File.separator + listOfPaths[i]);
+            else
+            {
+                list(new File(folderPath + File.separator + listOfPaths[i]));
+            }
+        }
+
 
     }
 }
