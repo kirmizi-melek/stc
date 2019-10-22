@@ -1,6 +1,10 @@
 package ru.kruglov.task14;
 
 import ru.kruglov.localLibs.InputDataHandle;
+import ru.kruglov.task14.vendingMachine.Drink;
+import ru.kruglov.task14.vendingMachine.DrinkNotFoundException;
+import ru.kruglov.task14.vendingMachine.NoMoneyException;
+import ru.kruglov.task14.vendingMachine.VendingMachine;
 
 import java.io.BufferedReader;
 import java.io.IOException;

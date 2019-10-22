@@ -1,4 +1,4 @@
-package ru.kruglov.task14;
+package ru.kruglov.task14.vendingMachine;
 
 public class DrinkNotFoundException extends Throwable {
     DrinkNotFoundException() {

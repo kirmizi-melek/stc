@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.*;
 
 public class LoggerExample {
-    static final Logger LOGGER = Logger.getLogger(LoggerExample.class.getName());
+    public static final Logger LOGGER = Logger.getLogger(LoggerExample.class.getName());
     static void loggerConfig() {
         TodayDate date = new TodayDate();
         Handler fileHandler = null;

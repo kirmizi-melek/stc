@@ -1,4 +1,4 @@
-package ru.kruglov.task14;
+package ru.kruglov.task14.vendingMachine;
 
 public enum Drink {
     COCACOLA(1,"Coca-Cola", 50),

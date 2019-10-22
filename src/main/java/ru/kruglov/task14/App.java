@@ -1,8 +1,10 @@
 package ru.kruglov.task14;
 
+import ru.kruglov.task14.vendingMachine.VendingMachine;
+
 import java.io.IOException;
 
-import static ru.kruglov.task14.Drink.*;
+import static ru.kruglov.task14.vendingMachine.Drink.*;
 import static ru.kruglov.task14.LoggerExample.LOGGER;
 import java.util.logging.Level;
 

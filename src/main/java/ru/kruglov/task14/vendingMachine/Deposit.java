@@ -1,4 +1,4 @@
-package ru.kruglov.task14;
+package ru.kruglov.task14.vendingMachine;
 
 import java.util.logging.Level;
 

@@ -1,10 +1,11 @@
-package ru.kruglov.task14;
+package ru.kruglov.task14.vendingMachine;
 
+import ru.kruglov.task14.Response;
 import java.util.logging.Level;
 
 import static ru.kruglov.task14.LoggerExample.LOGGER;
 
-class VendingMachine {
+public class VendingMachine {
     public String getBrand() {
         return brand;
     }
