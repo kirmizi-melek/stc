@@ -1,4 +1,5 @@
 package ru.kruglov.task17;
+import ru.kruglov.localLibs.CheсkForNullAndEmpty;
 
 public class Book  {
     String title;
@@ -22,26 +23,10 @@ public class Book  {
     }
 
     private boolean checkValues(String title,String author, String year) {
-        if ((title == null) || (title.isEmpty())) {
-            Messages.EMPTY_TITLE.getMessage();
-            return false;
-        } else if ((author == null) || (author.isEmpty())) {
-            Messages.EMPTY_AUTHOR.getMessage();
-            return false;
-        } else if ((year == null) || (year.isEmpty())) {
-            Messages.EMPTY_YEAR.getMessage();
-            return false;
-        } else {
-            //addBook(title, author, year);
+        String[] arrayOfBookData = {title, author, year};
+        if (CheсkForNullAndEmpty.checker(arrayOfBookData)){
             return true;
-        }
-    }
-
-    private Book addBook(String title,String author, String year) {
-        if (checkValues(title, author, year)) {
-            return new Book(title, author, year);
-        }
-        return null;
+        } else return false;
     }
 
     public Book addBookToLibrary(String title,String author, String year) {
