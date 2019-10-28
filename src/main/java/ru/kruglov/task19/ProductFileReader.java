@@ -8,14 +8,38 @@ public class ProductFileReader {
     private final int multiplicity;
     private int countOfLines;
     private String pathToProductsList;
+    private String[][] arrayOfData;
+    private int countOfElementsOfArray;
 
     ProductFileReader(String path, int multiplicity) {
         this.pathToProductsList = path;
         this.multiplicity = multiplicity;
     }
 
-    public void func() {
+    public String[][] arrayReturner() throws RemainderOfDivisionException, FileNotFoundException  {
+        lineCounter();
+        if (multiplicityDeterminer()){
+            try {
+                this.countOfElementsOfArray = (int)(countOfLines/multiplicity);
+                makeArrayOfData();
+                return arrayOfData;
+            } catch (FileNotFoundException e) {
+                throw new FileNotFoundException();
+            }
+        } else throw new RemainderOfDivisionException();
+    }
 
+    private void makeArrayOfData() throws FileNotFoundException {
+        arrayOfData = new String[countOfElementsOfArray][multiplicity];
+        Scanner scanner = new Scanner(new File(this.pathToProductsList));
+        while (scanner.hasNext()) {
+            for (int i = 0; i < countOfElementsOfArray; i++) {
+                for (int j = 0; j < multiplicity; j++) {
+                    arrayOfData[i][j] = scanner.nextLine();
+                }
+                System.out.print("\n");
+            }
+        }
     }
 
     private int lineCounter() {
@@ -34,8 +58,6 @@ public class ProductFileReader {
     }
 
     private boolean multiplicityDeterminer() {
-        if (lineCounter()%multiplicity == 0) {return true;
-        } else
-            return false;
+        return lineCounter() % multiplicity == 0;
     }
 }

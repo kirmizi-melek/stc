@@ -3,7 +3,7 @@ package ru.kruglov.task19;
 public enum Commands {
     HELP("help"),
     EXIT("exit"),
-    CHECQUE("checkque");
+    CHEQUE("cheque");
 
     private String text;
 
