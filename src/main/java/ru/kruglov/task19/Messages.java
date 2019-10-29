@@ -8,7 +8,8 @@ public enum Messages {
             ),
     GOODBYE("Application is  closing.\n"),
     ERROR_APP_HANDLER("Error during the handling of user input commands \n"),
-    WRONG_INPUT("Wrong input parameter \n");
+    WRONG_INPUT("Wrong input parameter \n"),
+    ERROR_CONVERT_STRING_TO_FLOAT("Error during conversion from String to float");
 
     private String text;
 

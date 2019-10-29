@@ -11,12 +11,12 @@ public class Product {
     private float costInCents;
 
     Product(String name, float count, float price) throws ProductIsNotValidException {
-        if (name.equals("") && count > 0f && price > 0f) {
+        if (!name.equals("") && count > 0f && price > 0f) {
             this.name = name;
             this.count = count;
             this.price = price;
             countCost();
-        } else throw new ProductIsNotValidException();
+        } else throw new ProductIsNotValidException(name, count, price);
     }
 
     private void countCost() {
@@ -29,8 +29,8 @@ public class Product {
         HashMap<String, String> instanceFields = new HashMap<>();
         instanceFields.put("name", this.name);
         instanceFields.put("price", String.valueOf(this.price));
-        instanceFields.put("count", String.valueOf(this.name));
-        instanceFields.put("cost", String.valueOf(this.name));
+        instanceFields.put("count", String.valueOf(this.count));
+        instanceFields.put("cost", String.valueOf(this.cost));
         return instanceFields;
     }
 

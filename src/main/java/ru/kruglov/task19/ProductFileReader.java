@@ -16,11 +16,15 @@ public class ProductFileReader {
         this.multiplicity = multiplicity;
     }
 
+    private void getCountOfArrayElements() {
+        this.countOfElementsOfArray = (int)(countOfLines/multiplicity);
+    }
+
     public String[][] arrayReturner() throws RemainderOfDivisionException, FileNotFoundException  {
         lineCounter();
         if (multiplicityDeterminer()){
+            getCountOfArrayElements();
             try {
-                this.countOfElementsOfArray = (int)(countOfLines/multiplicity);
                 makeArrayOfData();
                 return arrayOfData;
             } catch (FileNotFoundException e) {
@@ -37,7 +41,6 @@ public class ProductFileReader {
                 for (int j = 0; j < multiplicity; j++) {
                     arrayOfData[i][j] = scanner.nextLine();
                 }
-                System.out.print("\n");
             }
         }
     }

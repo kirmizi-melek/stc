@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 class Application {
     private BufferedReader buff;
@@ -35,7 +37,14 @@ class Application {
                 } else if (inputPhrase.equals(Commands.EXIT.getMessage())) {
                     exitApp();
                 } else if (inputPhrase.equals(Commands.CHEQUE.getMessage())) {
-                    getArray("products.txt", 3);
+                    ArrayList<Product> products = new ProductArrayCreator().makeArrayOfProducts("products.txt", 3);
+                    for (Product product: products) {
+                        HashMap<String, String> hashMap = product.getInstanceFields();
+                        System.out.print(hashMap.get("name") + " ");
+                        System.out.print(hashMap.get("count") + " ");
+                        System.out.print(hashMap.get("price") + " ");
+                        System.out.println(hashMap.get("cost") + " ");
+                    }
                 } else {
                 }
             } catch (IOException e) {
