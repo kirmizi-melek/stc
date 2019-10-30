@@ -46,5 +46,11 @@ public class Product {
         this.cost = this.costInCents/100;
     }
 
+    public float getCost() {
+        return cost;
+    }
+
+
+
 
 }

@@ -32,20 +32,18 @@ class Application {
             Messages.WELCOME.printMessage();
             try {
                 String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
-                if (inputPhrase.equals(Commands.HELP.getMessage())) {
-                    getHelp();
-                } else if (inputPhrase.equals(Commands.EXIT.getMessage())) {
-                    exitApp();
-                } else if (inputPhrase.equals(Commands.CHEQUE.getMessage())) {
-                    ArrayList<Product> products = new ProductArrayCreator().makeArrayOfProducts("products.txt", 3);
-                    for (Product product: products) {
-                        HashMap<String, String> hashMap = product.getInstanceFields();
-                        System.out.print(hashMap.get("name") + " ");
-                        System.out.print(hashMap.get("count") + " ");
-                        System.out.print(hashMap.get("price") + " ");
-                        System.out.println(hashMap.get("cost") + " ");
-                    }
-                } else {
+                Commands command = Commands.valueOf(inputPhrase.toUpperCase());
+                switch (command) {
+                    case HELP:
+                        getHelp();
+                        break;
+                    case EXIT:
+                        exitApp();
+                        break;
+                    case CHEQUE:
+                        ArrayList<Product> products = new ProductArrayCreator().makeArrayOfProducts("products.txt", 3);
+                        chequePrinter(products);
+                        break;
                 }
             } catch (IOException e) {
                 buff.close();
@@ -55,22 +53,24 @@ class Application {
         }
     }
 
-    private void getArray(String path, int mult) {
-        ProductFileReader productFileReader = new ProductFileReader(path,mult);
-        try {
-            String[][] a = productFileReader.arrayReturner();
-            for (String[] str: a) {
-                for (String str1 : str) {
-                    System.out.print(str1 + " ");
-                }
-                System.out.print("\n");
-            }
-
-        } catch (RemainderOfDivisionException e) {
-            //TODO Handle exception
-        } catch (FileNotFoundException e) {
-            //TODO Handle exception
+    private void chequePrinter(ArrayList<Product> products) {
+        String format = "|%1$-20s|%2$-7s|%3$-7s|%4$-10s|\n";
+        float totalCost = 0f;
+        System.out.format(format, "Наименование", "Цена", "Кол-во","Стоимость");
+        System.out.format(format, "====================", "=======", "=======","==========");
+        for (Product product : products) {
+            totalCost += product.getCost();
+            HashMap<String, String> hashMap = product.getInstanceFields();
+            System.out.format(
+                            format,
+                            hashMap.get("name"),
+                            hashMap.get("price"),
+                            hashMap.get("count"),
+                            hashMap.get("cost"));
         }
+        System.out.format(format, "====================", "=======", "=======","==========");
+        System.out.format(format, "Итого", "", "", totalCost);
+
     }
 }
 
