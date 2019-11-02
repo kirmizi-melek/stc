@@ -5,14 +5,10 @@ import ru.kruglov.localLibs.InputDataHandle;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.*;
 
 class Application {
     private BufferedReader buff;
     boolean appStatus = true;
-    private final static String PATH_TO_API = "https://cat-fact.herokuapp.com";
-    private final static String GET_FACTS = "/facts";
-    private final static String GET_USERS = "/users";
 
     Application() {
         buff = new BufferedReader(new InputStreamReader(System.in));
@@ -44,6 +40,9 @@ class Application {
                     case GET:
                         sendGetRequest();
                         break;
+                    case PRINT:
+                        printFacts();
+                        break;
                 }
             } catch (IOException e) {
                 buff.close();
@@ -53,8 +52,17 @@ class Application {
         }
     }
 
-    private void sendGetRequest() {
+    private void printFacts() {
+        FactSerializator factSerializator = new FactSerializator();
+        new FactPrinter().printFactfromArrayOfFacts(factSerializator.getArrayOfFactsFromFile());
+    }
 
+    private void sendGetRequest() {
+        try {
+            new URLConnectionReader().request();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
