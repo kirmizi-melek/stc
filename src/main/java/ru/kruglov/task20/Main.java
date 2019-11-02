@@ -7,6 +7,7 @@ public class Main {
         try {
             new Application().appHandler();
         } catch (IOException e) {
+            Messages.ERROR_APP_HANDLER.printMessage();
             e.printStackTrace();
         }
     }

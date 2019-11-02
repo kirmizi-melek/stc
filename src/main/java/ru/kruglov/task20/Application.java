@@ -45,6 +45,7 @@ class Application {
                         break;
                 }
             } catch (IOException e) {
+                Messages.WRONG_INPUT.printMessage();
                 buff.close();
                 e.printStackTrace();
                 appStatus = false;
@@ -60,6 +61,7 @@ class Application {
     private void sendGetRequest() {
         try {
             new URLConnectionReader().request();
+            Messages.SUCCESSFUL_GET_REQUEST.printMessage();
         } catch (Exception e) {
             e.printStackTrace();
         }
