@@ -23,7 +23,6 @@ public class Main {
                 System.out.print(arr_new[i][j] + " ");
             }
             System.out.print("\n");
-
         }
     }
 
@@ -33,7 +32,5 @@ public class Main {
         for (int i : newArray) {
             System.out.print(i + " ");
         }
-
-
     }
 }

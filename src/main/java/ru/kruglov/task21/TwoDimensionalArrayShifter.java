@@ -6,10 +6,10 @@ public class TwoDimensionalArrayShifter {
     TwoDimensionalArrayShifter(int[][] inputArray) {
         this.array = inputArray;
     }
+
     public int[][] getArray() {
         return array;
     }
-
 
     public void toLeft() throws NullPointerException {
         for (int i = 0; i < this.array.length ; i++) {
@@ -21,9 +21,5 @@ public class TwoDimensionalArrayShifter {
                 }
             }
         }
-    }
-
-    public void reverse() {
-
     }
 }
