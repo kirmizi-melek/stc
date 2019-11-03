@@ -1,9 +1,9 @@
 package ru.kruglov.task21;
 
-public class ArrayExample {
+public class TwoDimensionalArrayShifter {
     int[][] array;
 
-    ArrayExample(int[][] inputArray) {
+    TwoDimensionalArrayShifter(int[][] inputArray) {
         this.array = inputArray;
     }
     public int[][] getArray() {
@@ -12,7 +12,6 @@ public class ArrayExample {
 
 
     public void toLeft() throws NullPointerException {
-        //int[][] array = null;
         for (int i = 0; i < this.array.length ; i++) {
             for (int j = 0; j < this.array[i].length ; j++) {
                 if (j+1 < this.array[i].length) {
@@ -20,9 +19,11 @@ public class ArrayExample {
                 } else {
                     array[i][j] = 0;
                 }
-
             }
-
         }
+    }
+
+    public void reverse() {
+
     }
 }
