@@ -1,4 +1,4 @@
-package ru.kruglov.task25;
+package ru.kruglov.task25_1;
 
 import java.util.*;
 
