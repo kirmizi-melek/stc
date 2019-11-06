@@ -8,6 +8,6 @@ public class PersonSuperComparator implements Comparator<Person> {
         if (person1.getName().equals(person2.getName()) &&
                 person1.getAge() == person2.getAge()) {
             return 0;
-        } else return 1;
-    }
+        } else return 1; //TODO Переработать логику согласно конракту интерф. Comparator
+    }                   // TODO Использовать .sort() для проверки правильности работы
 }

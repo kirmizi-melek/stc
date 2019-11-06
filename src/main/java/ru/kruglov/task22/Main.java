@@ -10,6 +10,7 @@ public class Main {
         people.add(new Person(3,"Ivan", 20));
         people.add(new Person(4,"Sergey", 24));
         people.add(new Person(5,"Sergey", 20));
+        //people.sort();
         return people;
     }
 
