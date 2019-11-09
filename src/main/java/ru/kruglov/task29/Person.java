@@ -3,28 +3,24 @@ package ru.kruglov.task29;
 public class Person {
     public int id;
     private String name;
-    private int age;
+    private char sex;
 
-    Person(int personId, String personName, int personAge) {
+    Person(int personId, String personName, char personSex) {
         this.id = personId;
         this.name = personName;
-        this.age = personAge;
+        this.sex = personSex;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public char getSex() {
+        return sex;
     }
 
 }

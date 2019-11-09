@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Main {
     public ArrayList personToPeopleOrganizer() {
         ArrayList<Person> people = new ArrayList<>();
-        people.add(new Person(1, "Ivan", 24));
-        people.add(new Person(2, "Ivan", 20));
-        people.add(new Person(3,"Ivan", 20));
-        people.add(new Person(4,"Sergey", 24));
-        people.add(new Person(5,"Sergey", 20));
+        people.add(new Person(1, "Ivan", 'M'));
+        people.add(new Person(2, "Ivan", 'M'));
+        people.add(new Person(3,"Ivan", 'M'));
+        people.add(new Person(4,"Sergey", 'M'));
+        people.add(new Person(5,"Sergey", 'M'));
         return people;
     }
 
