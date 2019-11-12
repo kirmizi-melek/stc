@@ -10,6 +10,7 @@ public class Main {
         people.add(new Person(3,"Ivan", 20));
         people.add(new Person(4,"Sergey", 24));
         people.add(new Person(5,"Sergey", 20));
+        //people.sort();
         return people;
     }
 
@@ -30,6 +31,16 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.dublicatePersonFinder(main.personToPeopleOrganizer());
+        //main.dublicatePersonFinder(main.personToPeopleOrganizer());
+        main.method();
+    }
+
+    public void method() {
+      ArrayList<Person> al = personToPeopleOrganizer();
+      al.sort(new PersonSuperComparator());
+      for (int i = 0; i < al.size(); i++ ) {
+          Person comparablePerson = al.get(i);
+          System.out.printf("%s: %s \n",comparablePerson.getName(), comparablePerson.getAge());
+      }
     }
 }

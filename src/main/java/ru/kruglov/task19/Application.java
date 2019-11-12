@@ -65,8 +65,9 @@ class Application {
                             format,
                             hashMap.get("name"),
                             hashMap.get("price"),
-                            hashMap.get("count"),
-                            hashMap.get("cost"));
+                            hashMap.get("count"), //TODO Поиграться с форматами format, чтобы
+                            hashMap.get("cost")); //TODO не нужно было приводить float к String
+
         }
         System.out.format(format, "====================", "=======", "=======","==========");
         System.out.format(format, "Итого", "", "", totalCost);
