@@ -31,6 +31,16 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.dublicatePersonFinder(main.personToPeopleOrganizer());
+        //main.dublicatePersonFinder(main.personToPeopleOrganizer());
+        main.method();
+    }
+
+    public void method() {
+      ArrayList<Person> al = personToPeopleOrganizer();
+      al.sort(new PersonSuperComparator());
+      for (int i = 0; i < al.size(); i++ ) {
+          Person comparablePerson = al.get(i);
+          System.out.printf("%s: %s \n",comparablePerson.getName(), comparablePerson.getAge());
+      }
     }
 }
