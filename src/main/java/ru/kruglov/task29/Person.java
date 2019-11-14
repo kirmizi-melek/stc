@@ -23,4 +23,8 @@ public class Person {
         return sex;
     }
 
+    public int getId() {
+        return id;
+    }
+
 }
