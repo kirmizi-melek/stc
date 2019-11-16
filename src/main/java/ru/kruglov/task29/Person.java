@@ -27,4 +27,15 @@ public class Person {
         return id;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Person comparablePeson = (Person)obj;
+        if (this.getId() == comparablePeson.getId() &&
+            this.getName().equals(comparablePeson.getName()) &&
+            this.getSex() == comparablePeson.getSex()) {
+                    return true;
+        }  else {
+            return false;
+        }
+    }
 }
