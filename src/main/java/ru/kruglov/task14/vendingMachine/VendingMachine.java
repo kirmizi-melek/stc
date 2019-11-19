@@ -6,16 +6,7 @@ import java.util.logging.Level;
 import static ru.kruglov.task14.LoggerExample.LOGGER;
 
 public class VendingMachine {
-    public String getBrand() {
-        return brand;
-    }
-
     private String brand;
-
-    public Drink[] getDrinks() {
-        return drinks;
-    }
-
     private Drink[] drinks;
     private Deposit deposit = new Deposit();
 
@@ -65,4 +56,13 @@ public class VendingMachine {
     public static String getDrink() {
         return Response.TAKE_DRINK.getText();
     }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public Drink[] getDrinks() {
+        return drinks;
+    }
+
 }
