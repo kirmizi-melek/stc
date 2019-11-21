@@ -12,16 +12,19 @@ public class BranchCreator {
     }
 
     void count(int countOfNodes) {
-        int num = 1;
-        for (int i = 1; i <= countOfNodes; i++) {
-            for (int j = 1; j <= num ; j++) {
-                Node node = new Node(countOfNodes);
-                System.out.println(node.getId());
+        int countOfNodesInTheLevel = 1;
+        int idOfLevel = 1;
+        int idOfNode = 1;
+        while (countOfNodes > 0) {
+            System.out.println("level="+idOfLevel + "; nodesInLevel ="+countOfNodesInTheLevel );
+            for (int j = 0; (j < countOfNodesInTheLevel && countOfNodes>0); j++) {
+                Node node = new Node(idOfNode);
+                System.out.println("Node"+node.getId());
+                idOfNode++;
                 countOfNodes--;
             }
-            num = num * 2;
-
-            System.out.println("i="+i + "; num ="+num );
+            idOfLevel++;
+            countOfNodesInTheLevel = countOfNodesInTheLevel * 2;
         }
     }
 }

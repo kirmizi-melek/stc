@@ -19,7 +19,7 @@ public class Main {
         System.out.println(countOfLeafs);
 
         System.out.println("----");
-        new BranchCreator().count(7);
+        new BranchCreator().count(10);
     }
 
 
