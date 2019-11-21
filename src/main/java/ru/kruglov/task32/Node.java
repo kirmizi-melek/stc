@@ -5,7 +5,11 @@ public class Node {
     Node leftChild;
     Node rightChild;
 
-    private boolean isLeaf() {
+    Node(int id) {
+        this.id = id;
+    }
+
+    public boolean isLeaf() {
         return (this.leftChild == null && this.rightChild == null);
     }
 
@@ -16,4 +20,18 @@ public class Node {
     public Node getRightChild() {
         return rightChild;
     }
+
+    public void setLeftChild(Node leftChild) {
+        this.leftChild = leftChild;
+    }
+
+    public void setRightChild(Node rightChild) {
+        this.rightChild = rightChild;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+
 }
