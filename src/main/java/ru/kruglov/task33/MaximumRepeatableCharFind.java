@@ -8,6 +8,7 @@ public class MaximumRepeatableCharFind {
     private String inputWord;
     private char maxRepeatableChar;
     private HashMap<Character, Integer> hashMapOfCharsFromWord;
+    private int maxRepeatingCount;
 
     MaximumRepeatableCharFind(BufferedReader buff) {
         try {
@@ -59,6 +60,7 @@ public class MaximumRepeatableCharFind {
             if (hashMap.get(character) == maxValue) {
                 //maxValue = hashMap.get(character);
                 this.maxRepeatableChar = character;
+                this.maxRepeatingCount = maxValue;
                 statusOfSearch = true;
                 break;
             }
@@ -68,4 +70,16 @@ public class MaximumRepeatableCharFind {
             throw new RuntimeException(Messages.ERROR_APP_HANDLER.getMessage());
         }
     }
+
+    public String getInputWord() {
+        return inputWord;
+    }
+
+
+    public int getMaxRepeatingCount() {
+        return maxRepeatingCount;
+    }
+
+
+
 }

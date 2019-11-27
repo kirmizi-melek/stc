@@ -39,7 +39,7 @@ class Application {
                         break;
                     case FIND:
                         Messages.TYPE_THE_WORD.printMessage();
-                        System.out.println(new MaximumRepeatableCharFind(buff).returnFirstUnrepeatableChar());
+                        printResult();
                         break;
                 }
             } catch (IOException e) {
@@ -49,6 +49,15 @@ class Application {
                 appStatus = false;
             }
         }
+    }
+
+    private void printResult() {
+        MaximumRepeatableCharFind mrch = new MaximumRepeatableCharFind(buff);
+        String foundChar = mrch.returnFirstUnrepeatableChar();
+        String inputWord = mrch.getInputWord();
+        int countOfRepeting = mrch.getMaxRepeatingCount();
+
+        System.out.printf("Character: %s has occurred maximum times in %s: %d \n", foundChar,inputWord,countOfRepeting);
     }
 }
 
