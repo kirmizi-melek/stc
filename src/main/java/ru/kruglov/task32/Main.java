@@ -12,5 +12,8 @@ public class Main {
         }
 
         tree.printTree();
+
+        System.out.println("\n");
+        tree.countLeafs();
     }
 }
