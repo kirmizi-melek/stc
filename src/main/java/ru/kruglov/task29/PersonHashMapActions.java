@@ -14,12 +14,16 @@ public class PersonHashMapActions {
     }
 
     public static void removeTheDuplicates(Map<String,Person> map) {
-        Collection<Person> list = map.values();
-        for (Iterator<Person> iterator = list.iterator(); iterator.hasNext();) {
-            if (Collections.frequency(list, iterator.next())>1) {
-                iterator.remove();
-                //removeItemFromMapByValue(map, iterator.next());
-            }
+        Set<Map.Entry<String,Person>>  list = new HashMap<>(map).entrySet();
+        for (Iterator<Map.Entry<String,Person>> iterator = list.iterator(); iterator.hasNext();) {
+           // if (Collections.frequency(list, iterator.next())>1) {
+               // iterator.remove();
+                if (iterator.hasNext()) {
+                    Map.Entry<String,Person> personEntry = iterator.next();
+                    removeItemFromMapByValue(map, personEntry.getValue());
+                    map.put(personEntry.getKey(), personEntry.getValue());
+                }
+          //  }
         }
     }
 

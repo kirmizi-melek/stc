@@ -18,7 +18,7 @@ public class Main {
         PersonHashMapActions.printOutputHashMap(phmc.getHashMap());
 
         //Deleting of element from hashMap by separate request
-        PersonHashMapActions.removeItemFromMapByValue(phmc.getHashMap(), new Person(1,"Maria", 'F'));
+       // PersonHashMapActions.removeItemFromMapByValue(phmc.getHashMap(), new Person(1,"Maria", 'F'));
 
         //Printing of hashMap after deleting of single element
         System.out.println("\nhashMap after deleting item by its value");
