@@ -12,8 +12,10 @@ public class Main {
         }
 
         tree.printTree();
+        tree.countLeafs();
+        tree.countLeafs();
+
 
         System.out.println("\n");
-        tree.countLeafs();
     }
 }

@@ -3,8 +3,6 @@ package ru.kruglov.task32;
 public class Tree {
     Node root;
 
-    int countOfLeafs;
-
     Tree(int id) {
        root = new Node(id);
     }
@@ -33,10 +31,9 @@ public class Tree {
     }
 
     public void countLeafs() {
-        countLeafs(root);
-        System.out.println("Count of Leafs = " + countOfLeafs);
+        int count = countLeafs(root);
+        System.out.println("Count of Leafs = " + count);
     }
-
 
     private void printTree(Node currentNode) {
         if (currentNode != null) {
@@ -46,18 +43,17 @@ public class Tree {
         }
     }
 
-    private void countLeafs(Node currentNode) {
+    private int countLeafs(Node currentNode) {
         if (currentNode != null) {
             System.out.println(currentNode.getId());
             if(!currentNode.isLeaf()) {
-                countLeafs(currentNode.getLeftChild());
-                countLeafs(currentNode.getRightChild());
+                int leftCount = countLeafs(currentNode.getLeftChild());
+                int rightCount = countLeafs(currentNode.getRightChild());
+                return leftCount+ rightCount;
             } else {
-                countOfLeafs++;
+                return 1;
             }
         }
+        return 0;
     }
-
-
-
 }
