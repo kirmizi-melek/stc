@@ -1,4 +1,4 @@
-package ru.kruglov.task43;
+package ru.kruglov.task43.app;
 
 public enum Messages {
     WELCOME ("Select action \n" +

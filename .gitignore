@@ -28,3 +28,6 @@ hs_err_pid*
 /.idea/uiDesigner.xml
 /innopolis.iml
 /pom.xml
+
+# Properties
+src/main/java/ru/kruglov/task43/jdbc/jdbc.properties

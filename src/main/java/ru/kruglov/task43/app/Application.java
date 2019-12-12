@@ -1,17 +1,16 @@
-package ru.kruglov.task43;
+package ru.kruglov.task43.app;
 
 import ru.kruglov.localLibs.InputDataHandle;
-import ru.kruglov.task30.FirstUnrepeatableCharFind;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Application {
+public class Application {
     private BufferedReader buff;
     boolean appStatus = true;
 
-    Application() {
+    public Application() {
         buff = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -25,7 +24,7 @@ class Application {
         Messages.HELP.printMessage();
     }
 
-    void appHandler() throws IOException {
+    public void appHandler() throws IOException {
         while (appStatus) {
             Messages.WELCOME.printMessage();
             try {
@@ -40,7 +39,7 @@ class Application {
                         break;
                     case GETBOOKS:
                         break;
-                    case REGREADER:
+                    case RETREADER:
                         break;
                     case GETREADERBOOKS:
                         break;

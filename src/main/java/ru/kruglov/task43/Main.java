@@ -1,5 +1,5 @@
 package ru.kruglov.task43;
-
+import ru.kruglov.task43.app.*;
 import java.io.IOException;
 
 public class Main {

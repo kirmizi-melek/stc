@@ -1,9 +1,9 @@
-package ru.kruglov.task43;
+package ru.kruglov.task43.app;
 
 public enum Commands {
     HELP,
     EXIT,
-    REGREADER,
+    RETREADER,
     GETREADERBOOKS,
     ASSIGNBOOK,
     GETSTAT,
