@@ -8,6 +8,7 @@ public enum Messages {
             ),
     GOODBYE("Application is  closing.\n"),
     ERROR_APP_HANDLER("Error during the handling of user input commands \n"),
+    SQL_EXCEPTION("SQL exception"),
     WRONG_INPUT("Wrong input parameter \n");
 
     private String text;

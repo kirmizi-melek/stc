@@ -3,7 +3,7 @@ package ru.kruglov.task43.app;
 public enum Commands {
     HELP,
     EXIT,
-    RETREADER,
+    GETREADER,
     GETREADERBOOKS,
     ASSIGNBOOK,
     GETSTAT,

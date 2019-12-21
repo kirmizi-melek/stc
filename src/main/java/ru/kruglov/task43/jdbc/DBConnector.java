@@ -18,7 +18,7 @@ public class DBConnector {
         dbConnect();
     }
 
-    Connection dbConnect() throws NullPointerException  {
+    public Connection dbConnect() throws NullPointerException  {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url,user, password);

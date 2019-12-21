@@ -1,14 +1,19 @@
 package ru.kruglov.task43.app;
 
 import ru.kruglov.localLibs.InputDataHandle;
+import ru.kruglov.task43.jdbc.DBConnector;
+import ru.kruglov.task43.jdbc.QueryHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Application {
     private BufferedReader buff;
     boolean appStatus = true;
+    DBConnector connector = new DBConnector();
 
     public Application() {
         buff = new BufferedReader(new InputStreamReader(System.in));
@@ -28,6 +33,7 @@ public class Application {
         while (appStatus) {
             Messages.WELCOME.printMessage();
             try {
+                establishConnection();
                 String inputPhrase = InputDataHandle.getDataFromSystemIn(this.buff);
                 Commands command = Commands.valueOf(inputPhrase.toUpperCase());
                 switch (command) {
@@ -38,8 +44,9 @@ public class Application {
                         exitApp();
                         break;
                     case GETBOOKS:
+                        QueryHandler.getBooks(establishConnection());
                         break;
-                    case RETREADER:
+                    case GETREADER:
                         break;
                     case GETREADERBOOKS:
                         break;
@@ -55,7 +62,13 @@ public class Application {
                 buff.close();
                 e.printStackTrace();
                 appStatus = false;
+            } catch (SQLException e) {
+                Messages.SQL_EXCEPTION.printMessage();
             }
         }
+    }
+
+    private Connection establishConnection() {
+        return this.connector.dbConnect();
     }
 }
