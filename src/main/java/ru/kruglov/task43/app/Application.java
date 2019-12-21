@@ -2,7 +2,9 @@ package ru.kruglov.task43.app;
 
 import ru.kruglov.localLibs.InputDataHandle;
 import ru.kruglov.task43.jdbc.DBConnector;
-import ru.kruglov.task43.jdbc.QueryHandler;
+import ru.kruglov.task43.jdbc.Queries;
+import ru.kruglov.task43.jdbc.BookPrinter;
+import ru.kruglov.task43.jdbc.QueryRunner;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,7 +46,11 @@ public class Application {
                         exitApp();
                         break;
                     case GETBOOKS:
-                        QueryHandler.getBooks(establishConnection());
+                        //BookPrinter.getBooks(establishConnection());
+                        new BookPrinter().getBooks(
+                                new QueryRunner().runQuery(
+                                        establishConnection(),
+                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS));
                         break;
                     case GETREADER:
                         break;
