@@ -47,14 +47,11 @@ public class Application {
                         exitApp();
                         break;
                     case GETBOOKS:
-                        new BookHandler().printReader(
-                            new QueryRunner().runQuery(
-                                    establishConnection(),
-                                    Queries.GET_ALL_BOOKS_WITH_AUTHORS));
-//                        new BookHandler().getBooks(
-//                                new QueryRunner().runQuery(
-//                                        establishConnection(),
-//                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS));
+                        new BookHandler(
+                                new QueryRunner().runQuery(
+                                        establishConnection(),
+                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS)
+                        ).printReader();
                         break;
                     case GETREADER:
                         System.out.println("Type reader id");
