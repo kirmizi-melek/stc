@@ -28,7 +28,13 @@ public class Book {
         this.reader_id = reader_id;
     }
 
-
+    public String[] getInstanceDataInArray() {
+        String[] arrayOfInstanceData = {
+                Integer.toString(this.id),
+                this.getTitle(),
+                this.getAuthor().getName()};
+        return arrayOfInstanceData;
+    }
 
     public Author getAuthor() {
         return author;

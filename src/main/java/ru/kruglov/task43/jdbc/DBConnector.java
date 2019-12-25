@@ -11,6 +11,7 @@ public class DBConnector {
     private String url;
     private String user;
     private String password;
+    private Connection connection = null;
 
     public DBConnector() {
         parseDbAuthSettings();
@@ -19,13 +20,12 @@ public class DBConnector {
     }
 
     public Connection dbConnect() throws NullPointerException  {
-        Connection connection = null;
         try {
-            connection = DriverManager.getConnection(url,user, password);
+            this.connection = DriverManager.getConnection(url,user, password);
         } catch (SQLException e) {
             System.out.println("Connection to DB Error");
         }
-        return connection;
+        return this.connection;
     }
 
     private void getDriver() {

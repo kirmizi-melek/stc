@@ -3,8 +3,9 @@ package ru.kruglov.task43.app;
 import ru.kruglov.localLibs.InputDataHandle;
 import ru.kruglov.task43.jdbc.DBConnector;
 import ru.kruglov.task43.jdbc.Queries;
-import ru.kruglov.task43.jdbc.BookPrinter;
+import ru.kruglov.task43.handlers.BookHandler;
 import ru.kruglov.task43.jdbc.QueryRunner;
+import ru.kruglov.task43.handlers.ReaderHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Application {
-    private BufferedReader buff;
+    private BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
     boolean appStatus = true;
     DBConnector connector = new DBConnector();
 
@@ -46,13 +47,25 @@ public class Application {
                         exitApp();
                         break;
                     case GETBOOKS:
-                        //BookPrinter.getBooks(establishConnection());
-                        new BookPrinter().getBooks(
-                                new QueryRunner().runQuery(
-                                        establishConnection(),
-                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS));
+                        new BookHandler().printReader(
+                            new QueryRunner().runQuery(
+                                    establishConnection(),
+                                    Queries.GET_ALL_BOOKS_WITH_AUTHORS));
+//                        new BookHandler().getBooks(
+//                                new QueryRunner().runQuery(
+//                                        establishConnection(),
+//                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS));
                         break;
                     case GETREADER:
+                        System.out.println("Type reader id");
+                        int readerId = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
+                        ReaderHandler readerHandler = new ReaderHandler();
+                        Connection connection = establishConnection();
+                        readerHandler.printReader(
+                                readerHandler.makeReader(
+                                    new QueryRunner().runQuery(
+                                        readerHandler.statementPreparator(connection,readerId))));
+                        connection.close();
                         break;
                     case GETREADERBOOKS:
                         break;
