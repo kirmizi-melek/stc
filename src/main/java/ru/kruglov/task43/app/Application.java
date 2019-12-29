@@ -6,6 +6,7 @@ import ru.kruglov.task43.jdbc.Queries;
 import ru.kruglov.task43.handlers.BookHandler;
 import ru.kruglov.task43.jdbc.QueryRunner;
 import ru.kruglov.task43.handlers.ReaderHandler;
+import ru.kruglov.task43.jdbc.StatementPreparator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Application {
-    private BufferedReader buff = new BufferedReader(new InputStreamReader(System.in));
+    private BufferedReader buff;
     boolean appStatus = true;
     DBConnector connector = new DBConnector();
 
@@ -58,13 +59,17 @@ public class Application {
                         int readerId = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
                         ReaderHandler readerHandler = new ReaderHandler();
                         Connection connection = establishConnection();
+                        StatementPreparator statementPreparator = new StatementPreparator(connection);
                         readerHandler.printReader(
                                 readerHandler.makeReader(
                                     new QueryRunner().runQuery(
-                                        readerHandler.statementPreparator(connection,readerId))));
+                                        statementPreparator.prepareGetReaderStatement(readerId))));
+                                        //readerHandler.statementPreparator(connection,readerId))));
                         connection.close();
                         break;
                     case GETREADERBOOKS:
+                        System.out.println("Type reader id");
+
                         break;
                     case ASSIGNBOOK:
                         break;
