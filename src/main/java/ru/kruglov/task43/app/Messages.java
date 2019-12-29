@@ -9,8 +9,9 @@ public enum Messages {
     GOODBYE("Application is  closing.\n"),
     ERROR_APP_HANDLER("Error during the handling of user input commands \n"),
     SQL_EXCEPTION("SQL exception"),
+    TYPE_READER_ID("Type reader id"),
+    UNEXISTED_VALUE("Nothing exists by input value \n"),
     WRONG_INPUT("Wrong input parameter \n");
-
     private String text;
 
     Messages(String text) {

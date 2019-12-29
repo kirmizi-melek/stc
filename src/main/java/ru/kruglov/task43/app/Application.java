@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Application {
@@ -55,21 +56,10 @@ public class Application {
                         ).printReader();
                         break;
                     case GETREADER:
-                        System.out.println("Type reader id");
-                        int readerId = Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
-                        ReaderHandler readerHandler = new ReaderHandler();
-                        Connection connection = establishConnection();
-                        StatementPreparator statementPreparator = new StatementPreparator(connection);
-                        readerHandler.printReader(
-                                readerHandler.makeReader(
-                                    new QueryRunner().runQuery(
-                                        statementPreparator.prepareGetReaderStatement(readerId))));
-                                        //readerHandler.statementPreparator(connection,readerId))));
-                        connection.close();
+                        getReader();
                         break;
                     case GETREADERBOOKS:
-                        System.out.println("Type reader id");
-
+                        getReaderBooks();
                         break;
                     case ASSIGNBOOK:
                         break;
@@ -87,6 +77,46 @@ public class Application {
                 Messages.SQL_EXCEPTION.printMessage();
             }
         }
+    }
+
+    private void getReader() {
+        try {
+            ReaderHandler readerHandler = new ReaderHandler();
+            Connection connection = establishConnection();
+            StatementPreparator statementPreparator = new StatementPreparator(connection);
+            readerHandler.printReader(
+                    readerHandler.makeReader(
+                            new QueryRunner().runQuery(
+                                    statementPreparator.prepareGetReaderStatement(getReaderIdFromConsole()))));
+            connection.close();
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+    }
+
+    private void getReaderBooks() {
+        try {
+            ReaderHandler assignedBooksReaderHandler = new ReaderHandler();
+            Connection connection = establishConnection();
+            StatementPreparator statementPreparator = new StatementPreparator(connection);
+            PreparedStatement pStatement = statementPreparator.prepareGetReaderBooksStatement(getReaderIdFromConsole());
+            assignedBooksReaderHandler.printReader(
+                    assignedBooksReaderHandler.makeReader(
+                            new QueryRunner().runQuery(pStatement)));
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+
+    }
+
+    private int getReaderIdFromConsole() {
+        Messages.TYPE_READER_ID.printMessage();
+        try {
+            return Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
+        } catch (IOException | NumberFormatException e ) {
+            Messages.WRONG_INPUT.printMessage();
+        }
+        return 0;
     }
 
     private Connection establishConnection() {

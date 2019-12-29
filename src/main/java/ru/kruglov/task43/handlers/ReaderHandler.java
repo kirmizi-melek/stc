@@ -1,16 +1,10 @@
 package ru.kruglov.task43.handlers;
 
-import ru.kruglov.task43.jdbc.Queries;
+import ru.kruglov.task43.app.Messages;
 import ru.kruglov.task43.model.Reader;
 import java.sql.*;
 
 public class ReaderHandler {
-    public PreparedStatement statementPreparator(Connection connection,int id) throws SQLException {
-        String statement = Queries.GET_READER_BY_ITS_ID;
-        PreparedStatement preparedStatement = connection.prepareStatement(statement);
-        preparedStatement.setInt(1, id);
-        return preparedStatement;
-    }
 
     public Reader makeReader(ResultSet resultSet) throws SQLException {
             while (resultSet.next()) {
@@ -22,6 +16,10 @@ public class ReaderHandler {
     }
 
     public void printReader(Reader reader) {
-        reader.getInstanceDataInPrettyTable().printTable();
+        try {
+            reader.getInstanceDataInPrettyTable().printTable();
+        } catch (NullPointerException e) {
+            Messages.UNEXISTED_VALUE.printMessage();
+        }
     }
 }

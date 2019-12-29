@@ -18,4 +18,12 @@ public class StatementPreparator {
         preparedStatement.setInt(1, id);
         return preparedStatement;
     }
+
+    public PreparedStatement prepareGetReaderBooksStatement(int id)
+            throws SQLException {
+        String statement = Queries.GET_ALL_BOOKS_ASSIGNED_TO_READER;
+        PreparedStatement preparedStatement = connection.prepareStatement(statement);
+        preparedStatement.setInt(1, id);
+        return preparedStatement;
+    }
 }
