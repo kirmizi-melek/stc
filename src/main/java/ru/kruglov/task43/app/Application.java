@@ -49,11 +49,7 @@ public class Application {
                         exitApp();
                         break;
                     case GETBOOKS:
-                        new BookHandler(
-                                new QueryRunner().runQuery(
-                                        establishConnection(),
-                                        Queries.GET_ALL_BOOKS_WITH_AUTHORS)
-                        ).printReader();
+                        getBooks();
                         break;
                     case GETREADER:
                         getReader();
@@ -62,6 +58,7 @@ public class Application {
                         getReaderBooks();
                         break;
                     case ASSIGNBOOK:
+                        assignBookToReader();
                         break;
                     case GETSTAT:
                         break;
@@ -77,6 +74,35 @@ public class Application {
                 Messages.SQL_EXCEPTION.printMessage();
             }
         }
+    }
+
+    private void assignBookToReader() {
+        try {
+            Connection connection = establishConnection();
+            StatementPreparator statementPreparator = new StatementPreparator(connection);
+            PreparedStatement statement = statementPreparator.prepareAssignBookToReaderStatement(
+                    getBookIdFromConsole(),
+                    getReaderIdFromConsole());
+            if (!new QueryRunner().runUpdateQuery(statement)) {
+                Messages.SUCCESSFUL_BOOK_ASSIGNMENT.printMessage();
+            }
+
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+    }
+
+    private void getBooks() throws SQLException {
+        try {
+            Connection connection = establishConnection();
+            StatementPreparator statementPreparator = new StatementPreparator(connection);
+            new BookHandler(
+                    new QueryRunner().runQuery(statementPreparator.prepareGetBooksStatement())
+            ).printBooks();
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+
     }
 
     private void getReader() {
@@ -96,21 +122,29 @@ public class Application {
 
     private void getReaderBooks() {
         try {
-            ReaderHandler assignedBooksReaderHandler = new ReaderHandler();
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
             PreparedStatement pStatement = statementPreparator.prepareGetReaderBooksStatement(getReaderIdFromConsole());
-            assignedBooksReaderHandler.printReader(
-                    assignedBooksReaderHandler.makeReader(
-                            new QueryRunner().runQuery(pStatement)));
+
+            BookHandler assignedBooksReaderHandler = new BookHandler(new QueryRunner().runQuery(pStatement));
+            assignedBooksReaderHandler.printBooks();
         } catch (SQLException e) {
             Messages.SQL_EXCEPTION.printMessage();
         }
-
     }
 
     private int getReaderIdFromConsole() {
         Messages.TYPE_READER_ID.printMessage();
+        try {
+            return Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
+        } catch (IOException | NumberFormatException e ) {
+            Messages.WRONG_INPUT.printMessage();
+        }
+        return 0;
+    }
+
+    private int getBookIdFromConsole() {
+        Messages.TYPE_BOOK_ID.printMessage();
         try {
             return Integer.parseInt(InputDataHandle.getDataFromSystemIn(this.buff));
         } catch (IOException | NumberFormatException e ) {

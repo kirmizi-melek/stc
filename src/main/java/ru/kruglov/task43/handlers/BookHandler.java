@@ -23,7 +23,7 @@ public class BookHandler {
         return textTable;
     }
 
-    public void printReader() {
+    public void printBooks() {
         getBooksInPrettyTable(getArrayOfBooks()).printTable();
     }
 
