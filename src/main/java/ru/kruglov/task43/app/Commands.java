@@ -8,5 +8,6 @@ public enum Commands {
     ASSIGNBOOK,
     GETSTAT,
     SEARCH,
+    UNASSIGN,
     GETBOOKS;
 }

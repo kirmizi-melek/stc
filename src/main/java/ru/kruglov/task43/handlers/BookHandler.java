@@ -1,40 +1,25 @@
 package ru.kruglov.task43.handlers;
 
-import dnl.utils.text.table.TextTable;
-import ru.kruglov.task43.model.Author;
-import ru.kruglov.task43.model.Book;
+import ru.kruglov.task43.model.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BookHandler {
     private ArrayList<Book> arrayListOfBooks;
+    private ResultSet resultSet;
 
-    public BookHandler(ResultSet resultSet) {
+    public BookHandler(ResultSet inputResultSet) {
+        this.resultSet = inputResultSet;
+    }
+
+    public ArrayList<Book> arrayListBooksMaker() {
         try {
-            this.arrayListOfBooks = makeArrayListOfBooks(resultSet);
+            return this.arrayListOfBooks = makeArrayListOfBooks(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private TextTable getBooksInPrettyTable(String[][] arrayOfBooks) {
-        TextTable textTable = new TextTable(new String[]{"id","title", "author"},arrayOfBooks);
-        return textTable;
-    }
-
-    public void printBooks() {
-        getBooksInPrettyTable(getArrayOfBooks()).printTable();
-    }
-
-    private String[][] getArrayOfBooks()  {
-        int countOfBookFields = arrayListOfBooks.get(0).getInstanceDataInArray().length;
-        int sizeOfArray = arrayListOfBooks.size();
-        String[][] arrayOfBooks = new String[sizeOfArray][countOfBookFields];
-        for (int j = 0; j < sizeOfArray; j++) {
-            arrayOfBooks[j] =  arrayListOfBooks.get(j).getInstanceDataInArray();
-        }
-        return arrayOfBooks;
+        return null;
     }
 
     private ArrayList<Book> makeArrayListOfBooks(ResultSet resultSet) throws SQLException {
@@ -47,5 +32,28 @@ public class BookHandler {
             listOfBooks.add(newBook);
         }
         return listOfBooks;
+    }
+
+    public ArrayList<Book> arrayListStatisticMaker() {
+        try {
+            return this.arrayListOfBooks = makeArrayListOfStatistic(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Book> makeArrayListOfStatistic(ResultSet resultSet) throws SQLException {
+        arrayListOfBooks = new ArrayList<>();
+        while (resultSet.next()) {
+            Book newBook = new Book(resultSet.getInt(1),
+                    resultSet.getString(2));
+            newBook.setAuthor(new Author(resultSet.getInt(3),
+                    resultSet.getString(4)));
+            newBook.setReader(new Reader(resultSet.getInt(5),
+                    resultSet.getString(6)));
+            arrayListOfBooks.add(newBook);
+        }
+        return arrayListOfBooks;
     }
 }

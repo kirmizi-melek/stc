@@ -42,4 +42,19 @@ public class StatementPreparator {
         preparedStatement.setInt(2, bookId);
         return preparedStatement;
     }
+
+    public PreparedStatement prepareUnassignBookStatement(int bookId)
+            throws SQLException {
+        String statement = Queries.UNASSIGN_BOOK;
+        PreparedStatement preparedStatement = connection.prepareStatement(statement);
+        preparedStatement.setInt(1, bookId);
+        return preparedStatement;
+    }
+
+    public PreparedStatement prepareGetAllBooksStatisticStatement()
+            throws SQLException {
+        return connection.prepareStatement(Queries.GET_TOTAL_STATISTIC);
+    }
+
+
 }

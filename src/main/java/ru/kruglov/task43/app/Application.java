@@ -1,12 +1,13 @@
 package ru.kruglov.task43.app;
 
 import ru.kruglov.localLibs.InputDataHandle;
+import ru.kruglov.task43.printers.PrettyPrinter;
 import ru.kruglov.task43.jdbc.DBConnector;
-import ru.kruglov.task43.jdbc.Queries;
 import ru.kruglov.task43.handlers.BookHandler;
 import ru.kruglov.task43.jdbc.QueryRunner;
 import ru.kruglov.task43.handlers.ReaderHandler;
 import ru.kruglov.task43.jdbc.StatementPreparator;
+import ru.kruglov.task43.printers.StatPrettyPrinter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,8 +62,12 @@ public class Application {
                         assignBookToReader();
                         break;
                     case GETSTAT:
+                        getStatistic();
                         break;
                     case SEARCH:
+                        break;
+                    case UNASSIGN:
+                        unassignBook();
                         break;
                 }
             } catch (IOException e) {
@@ -76,6 +81,19 @@ public class Application {
         }
     }
 
+    private void unassignBook() {
+        Connection connection = establishConnection();
+        try {
+            PreparedStatement statement = new StatementPreparator(connection)
+                    .prepareUnassignBookStatement(getBookIdFromConsole());
+            if (!new QueryRunner().runUpdateQuery(statement)) {
+                Messages.SUCCESSFUL_BOOK_ASSIGNMENT.printMessage();
+            }
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+    }
+
     private void assignBookToReader() {
         try {
             Connection connection = establishConnection();
@@ -84,9 +102,8 @@ public class Application {
                     getBookIdFromConsole(),
                     getReaderIdFromConsole());
             if (!new QueryRunner().runUpdateQuery(statement)) {
-                Messages.SUCCESSFUL_BOOK_ASSIGNMENT.printMessage();
+                Messages.SUCCESSFUL_BOOK_UNASSIGNMENT.printMessage();
             }
-
         } catch (SQLException e) {
             Messages.SQL_EXCEPTION.printMessage();
         }
@@ -96,9 +113,9 @@ public class Application {
         try {
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
-            new BookHandler(
-                    new QueryRunner().runQuery(statementPreparator.prepareGetBooksStatement())
-            ).printBooks();
+            BookHandler bookHandler = new BookHandler(
+                    new QueryRunner().runQuery(statementPreparator.prepareGetBooksStatement()));
+            new PrettyPrinter(bookHandler.arrayListBooksMaker()).printBooks();
         } catch (SQLException e) {
             Messages.SQL_EXCEPTION.printMessage();
         }
@@ -120,14 +137,29 @@ public class Application {
         }
     }
 
+
+    private void getStatistic() {
+        Connection connection = establishConnection();
+        try {
+            PreparedStatement pStatement = new StatementPreparator(connection)
+                    .prepareGetAllBooksStatisticStatement();
+            BookHandler bookStatHandler = new BookHandler(new QueryRunner().runQuery(pStatement));
+            StatPrettyPrinter prettyPrinter = new StatPrettyPrinter(bookStatHandler.arrayListStatisticMaker());
+            prettyPrinter.printBooks();
+        } catch (SQLException e) {
+            Messages.SQL_EXCEPTION.printMessage();
+        }
+
+    }
+
     private void getReaderBooks() {
         try {
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
             PreparedStatement pStatement = statementPreparator.prepareGetReaderBooksStatement(getReaderIdFromConsole());
-
             BookHandler assignedBooksReaderHandler = new BookHandler(new QueryRunner().runQuery(pStatement));
-            assignedBooksReaderHandler.printBooks();
+            PrettyPrinter prettyPrinter = new PrettyPrinter(assignedBooksReaderHandler.arrayListBooksMaker());
+            prettyPrinter.printBooks();
         } catch (SQLException e) {
             Messages.SQL_EXCEPTION.printMessage();
         }

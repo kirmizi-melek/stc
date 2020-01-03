@@ -14,4 +14,12 @@ public class Queries {
             "WHERE r.id = ? ORDER BY b.id;";
     static final String ASSIGN_BOOK_TO_READER =
             "UPDATE library.\"Books\" SET reader_id = ? where id = ?";
+    static final String UNASSIGN_BOOK =
+            "UPDATE library.\"Books\" SET reader_id = NULL where id = ?";
+    static final String GET_TOTAL_STATISTIC =
+            "SELECT b.id, b.title, a.id, a.name, r.id, r.name\n" +
+            "FROM library.\"Books\" as b \n" +
+            "JOIN library.\"Authors\" as a ON b.author_id = a.id\n" +
+            "LEFT JOIN library.\"Readers\" as r ON b.reader_id = r.id\n" +
+            "ORDER BY b.id asc";
 }

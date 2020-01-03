@@ -7,12 +7,14 @@ public enum Messages {
             "exit - for closing the application \n"
             ),
     GOODBYE("Application is  closing.\n"),
+    SUCCESSFUL_BOOK_UNASSIGNMENT("Book was successfully unassigned \n"),
     ERROR_APP_HANDLER("Error during the handling of user input commands \n"),
     SQL_EXCEPTION("SQL exception \n"),
     TYPE_READER_ID("Type reader id"),
     TYPE_BOOK_ID("Type book id"),
     SUCCESSFUL_BOOK_ASSIGNMENT("Book was successfully assigned \n"),
     UNEXISTED_VALUE("Nothing exists by input value \n"),
+    ARRAY_BOUNDS_EXCEPTION("Reader doesn't have books \n"),
     WRONG_INPUT("Wrong input parameter \n");
 
     private String text;

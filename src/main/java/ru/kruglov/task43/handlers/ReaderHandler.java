@@ -8,8 +8,9 @@ public class ReaderHandler {
 
     public Reader makeReader(ResultSet resultSet) throws SQLException {
             while (resultSet.next()) {
-                Reader newReader = new Reader(resultSet.getInt("id"));
-                newReader.setName(resultSet.getString("name"));
+                Reader newReader = new Reader(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"));
                 return newReader;
             }
             return null;
