@@ -1,10 +1,10 @@
-package ru.kruglov.task43.handlers;
+package ru.kruglov.task43.controllers;
 
 import ru.kruglov.task43.app.Messages;
 import ru.kruglov.task43.model.Reader;
 import java.sql.*;
 
-public class ReaderHandler {
+public class ReaderController {
 
     public Reader makeReader(ResultSet resultSet) throws SQLException {
             while (resultSet.next()) {

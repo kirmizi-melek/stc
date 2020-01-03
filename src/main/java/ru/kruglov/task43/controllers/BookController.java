@@ -1,15 +1,15 @@
-package ru.kruglov.task43.handlers;
+package ru.kruglov.task43.controllers;
 
 import ru.kruglov.task43.model.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BookHandler {
+public class BookController {
     private ArrayList<Book> arrayListOfBooks;
     private ResultSet resultSet;
 
-    public BookHandler(ResultSet inputResultSet) {
+    public BookController(ResultSet inputResultSet) {
         this.resultSet = inputResultSet;
     }
 

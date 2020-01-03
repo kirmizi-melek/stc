@@ -3,9 +3,9 @@ package ru.kruglov.task43.app;
 import ru.kruglov.localLibs.InputDataHandle;
 import ru.kruglov.task43.printers.PrettyPrinter;
 import ru.kruglov.task43.jdbc.DBConnector;
-import ru.kruglov.task43.handlers.BookHandler;
+import ru.kruglov.task43.controllers.BookController;
 import ru.kruglov.task43.jdbc.QueryRunner;
-import ru.kruglov.task43.handlers.ReaderHandler;
+import ru.kruglov.task43.controllers.ReaderController;
 import ru.kruglov.task43.jdbc.StatementPreparator;
 import ru.kruglov.task43.printers.StatPrettyPrinter;
 
@@ -113,9 +113,9 @@ public class Application {
         try {
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
-            BookHandler bookHandler = new BookHandler(
+            BookController bookController = new BookController(
                     new QueryRunner().runQuery(statementPreparator.prepareGetBooksStatement()));
-            new PrettyPrinter(bookHandler.arrayListBooksMaker()).printBooks();
+            new PrettyPrinter(bookController.arrayListBooksMaker()).printBooks();
         } catch (SQLException e) {
             Messages.SQL_EXCEPTION.printMessage();
         }
@@ -124,11 +124,11 @@ public class Application {
 
     private void getReader() {
         try {
-            ReaderHandler readerHandler = new ReaderHandler();
+            ReaderController readerController = new ReaderController();
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
-            readerHandler.printReader(
-                    readerHandler.makeReader(
+            readerController.printReader(
+                    readerController.makeReader(
                             new QueryRunner().runQuery(
                                     statementPreparator.prepareGetReaderStatement(getReaderIdFromConsole()))));
             connection.close();
@@ -143,7 +143,7 @@ public class Application {
         try {
             PreparedStatement pStatement = new StatementPreparator(connection)
                     .prepareGetAllBooksStatisticStatement();
-            BookHandler bookStatHandler = new BookHandler(new QueryRunner().runQuery(pStatement));
+            BookController bookStatHandler = new BookController(new QueryRunner().runQuery(pStatement));
             StatPrettyPrinter prettyPrinter = new StatPrettyPrinter(bookStatHandler.arrayListStatisticMaker());
             prettyPrinter.printBooks();
         } catch (SQLException e) {
@@ -157,7 +157,7 @@ public class Application {
             Connection connection = establishConnection();
             StatementPreparator statementPreparator = new StatementPreparator(connection);
             PreparedStatement pStatement = statementPreparator.prepareGetReaderBooksStatement(getReaderIdFromConsole());
-            BookHandler assignedBooksReaderHandler = new BookHandler(new QueryRunner().runQuery(pStatement));
+            BookController assignedBooksReaderHandler = new BookController(new QueryRunner().runQuery(pStatement));
             PrettyPrinter prettyPrinter = new PrettyPrinter(assignedBooksReaderHandler.arrayListBooksMaker());
             prettyPrinter.printBooks();
         } catch (SQLException e) {
