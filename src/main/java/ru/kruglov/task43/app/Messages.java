@@ -2,7 +2,7 @@ package ru.kruglov.task43.app;
 
 public enum Messages {
     WELCOME ("Select action \n" +
-            "Type \"help\" for getting more info."),
+            "Type HELP for more info."),
     HELP("Use these commands: \n" +
             "exit - for closing the application \n"
             ),
@@ -15,6 +15,7 @@ public enum Messages {
     SUCCESSFUL_BOOK_ASSIGNMENT("Book was successfully assigned \n"),
     UNEXISTED_VALUE("Nothing exists by input value \n"),
     ARRAY_BOUNDS_EXCEPTION("Reader doesn't have books \n"),
+    WRONG_COMMAND("Wrong command. Use HELP for more info \n"),
     WRONG_INPUT("Wrong input parameter \n");
 
     private String text;
