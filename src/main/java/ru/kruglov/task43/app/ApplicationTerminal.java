@@ -7,16 +7,15 @@ import java.io.IOException;
 class ApplicationTerminal extends Application{
     int getReaderIdFromConsole() {
         Messages.TYPE_READER_ID.printMessage();
-        try {
-            return Integer.parseInt(InputDataHandle.getDataFromSystemIn(super.buff));
-        } catch (IOException | NumberFormatException e ) {
-            Messages.WRONG_INPUT.printMessage();
-        }
-        return 0;
+        return getDataFromSystemIn();
     }
 
     int getBookIdFromConsole() {
         Messages.TYPE_BOOK_ID.printMessage();
+        return getDataFromSystemIn();
+    }
+
+    private int getDataFromSystemIn() {
         try {
             return Integer.parseInt(InputDataHandle.getDataFromSystemIn(super.buff));
         } catch (IOException | NumberFormatException e ) {

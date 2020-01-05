@@ -77,7 +77,7 @@ class ApplicationFunctions extends Application{
             PreparedStatement statement = new StatementPreparator(super.connection)
                     .prepareUnassignBookStatement(super.appTerminalComands().getBookIdFromConsole());
             if (!new QueryRunner().runUpdateQuery(statement)) {
-                Messages.SUCCESSFUL_BOOK_ASSIGNMENT.printMessage();
+                Messages.SUCCESSFUL_BOOK_UNASSIGNMENT.printMessage();
             }
             super.connection.close();
         } catch (SQLException e) {
